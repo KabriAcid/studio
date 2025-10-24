@@ -2,17 +2,10 @@
 'use client';
 
 import Image from 'next/image';
-import { MoreHorizontal, PlusCircle, Pencil, Eye } from 'lucide-react';
+import { PlusCircle, Pencil, Eye } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
 import {
   Table,
   TableBody,
@@ -23,14 +16,23 @@ import {
 } from '@/components/ui/table';
 import { contributors } from '@/lib/placeholder-data';
 import { cn } from '@/lib/utils';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ContributorForm } from '@/components/contributor-form';
 import type { Contributor } from '@/lib/types';
+import { TableSkeleton } from '@/components/table-skeleton';
 
 export default function ContributorsPage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedContributor, setSelectedContributor] = useState<Contributor | undefined>(undefined);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+          setIsLoading(false);
+        }, 1500);
+        return () => clearTimeout(timer);
+    }, []);
 
     const handleNewContributor = () => {
         setSelectedContributor(undefined);
@@ -78,6 +80,9 @@ export default function ContributorsPage() {
                     <CardDescription className="text-base">A list of all contributors in your records.</CardDescription>
                 </CardHeader>
                 <CardContent>
+                    {isLoading ? (
+                        <TableSkeleton />
+                    ) : (
                     <Table>
                         <TableHeader>
                             <TableRow>
@@ -134,6 +139,7 @@ export default function ContributorsPage() {
                             ))}
                         </TableBody>
                     </Table>
+                    )}
                 </CardContent>
             </Card>
         </div>

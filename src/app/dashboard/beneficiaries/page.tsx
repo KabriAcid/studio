@@ -16,15 +16,24 @@ import {
 } from '@/components/ui/table';
 import { beneficiaries } from '@/lib/placeholder-data';
 import { cn } from '@/lib/utils';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { BeneficiaryForm } from '@/components/beneficiary-form';
 import type { Beneficiary } from '@/lib/types';
 import Link from 'next/link';
+import { TableSkeleton } from '@/components/table-skeleton';
 
 export default function BeneficiariesPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBeneficiary, setSelectedBeneficiary] = useState<Beneficiary | undefined>(undefined);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleNewBeneficiary = () => {
     setSelectedBeneficiary(undefined);
@@ -72,6 +81,9 @@ export default function BeneficiariesPage() {
           <CardDescription className="text-base">A list of all beneficiaries in your records.</CardDescription>
         </CardHeader>
         <CardContent>
+          {isLoading ? (
+            <TableSkeleton />
+          ) : (
           <Table>
             <TableHeader>
               <TableRow>
@@ -130,6 +142,7 @@ export default function BeneficiariesPage() {
               ))}
             </TableBody>
           </Table>
+          )}
         </CardContent>
       </Card>
     </div>

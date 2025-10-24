@@ -5,13 +5,22 @@ import { DollarSign, Users, TrendingUp, Handshake, ArrowRight } from 'lucide-rea
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { KpiCard } from '@/components/kpi-card';
 import { financialStats, monthlyFinancials, beneficiaries } from '@/lib/placeholder-data';
-import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { useState, useEffect } from 'react';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export default function DashboardPage() {
   const icons = [<DollarSign />, <TrendingUp />, <Users />, <Handshake />];
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
   
   return (
     <div className="p-4 md:p-8 lg:p-10 space-y-8">
@@ -20,14 +29,43 @@ export default function DashboardPage() {
         <p className="text-lg text-muted-foreground">Welcome back! Here's a summary of your organization's activity.</p>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {financialStats.map((stat, index) => (
-          <KpiCard key={stat.title} {...stat} icon={icons[index]} />
-        ))}
-      </div>
+      {isLoading ? (
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <Card key={i} className="shadow-[0_4px_12px_rgba(0,0,0,0.04),_0_1px_4px_rgba(0,0,0,0.06)] border-0">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <Skeleton className="h-5 w-2/5" />
+                <Skeleton className="h-6 w-6 rounded-sm" />
+              </CardHeader>
+              <CardContent>
+                <Skeleton className="h-8 w-1/2 mb-2" />
+                <Skeleton className="h-4 w-3/5" />
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      ) : (
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {financialStats.map((stat, index) => (
+            <KpiCard key={stat.title} {...stat} icon={icons[index]} />
+          ))}
+        </div>
+      )}
+
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
+          {isLoading ? (
+            <Card className="shadow-[0_4px_12px_rgba(0,0,0,0.04),_0_1px_4px_rgba(0,0,0,0.06)] border-0 h-full">
+                <CardHeader>
+                  <Skeleton className="h-7 w-1/3 mb-2" />
+                  <Skeleton className="h-5 w-2/3" />
+                </CardHeader>
+                <CardContent>
+                  <Skeleton className="h-[350px] w-full" />
+                </CardContent>
+            </Card>
+          ) : (
             <Card className="shadow-[0_4px_12px_rgba(0,0,0,0.04),_0_1px_4px_rgba(0,0,0,0.06)] border-0 h-full">
                 <CardHeader>
                 <CardTitle className="text-2xl font-headline">Financial Trends</CardTitle>
@@ -56,8 +94,29 @@ export default function DashboardPage() {
                 </div>
                 </CardContent>
             </Card>
+          )}
         </div>
         <div>
+          {isLoading ? (
+             <Card className="shadow-[0_4px_12px_rgba(0,0,0,0.04),_0_1px_4px_rgba(0,0,0,0.06)] border-0 h-full">
+                <CardHeader>
+                    <Skeleton className="h-7 w-1/2 mb-2" />
+                    <Skeleton className="h-5 w-3/4" />
+                </CardHeader>
+                <CardContent className="space-y-4">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                        <div key={i} className="flex items-center gap-4">
+                            <Skeleton className="h-10 w-10 rounded-full" />
+                            <div className="flex-1 space-y-2">
+                                <Skeleton className="h-4 w-3/4" />
+                                <Skeleton className="h-3 w-full" />
+                            </div>
+                            <Skeleton className="h-4 w-12" />
+                        </div>
+                    ))}
+                </CardContent>
+            </Card>
+          ) : (
             <Card className="shadow-[0_4px_12px_rgba(0,0,0,0.04),_0_1px_4px_rgba(0,0,0,0.06)] border-0 h-full">
                 <CardHeader className="flex flex-row items-center justify-between pb-4">
                     <div>
@@ -89,6 +148,7 @@ export default function DashboardPage() {
                     </div>
                 </CardContent>
             </Card>
+           )}
         </div>
       </div>
     </div>
