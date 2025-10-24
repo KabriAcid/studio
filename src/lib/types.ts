@@ -32,3 +32,13 @@ export type MonthlyData = {
   income: number;
   expenses: number;
 };
+
+export type Category = {
+  id: string;
+  name: string;
+};
+
+export type UserProfile = {
+    name: string;
+    email: string;
+};

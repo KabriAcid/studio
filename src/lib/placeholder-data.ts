@@ -1,4 +1,4 @@
-import type { Beneficiary, Contributor, FinancialStat, MonthlyData } from '@/lib/types';
+import type { Beneficiary, Contributor, FinancialStat, MonthlyData, Category, UserProfile } from '@/lib/types';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const getAvatar = (id: string) => PlaceHolderImages.find(img => img.id === id)?.imageUrl || '';
@@ -115,3 +115,20 @@ export const contributors: Contributor[] = [
     { id: '4', name: 'Judy Rodriguez', email: 'judy.r@example.com', avatar: getAvatar('avatar-10'), category: 'Individual', status: 'Inactive', totalContribution: 1000, lastContributionDate: '2021-02-05' },
     { id: '5', name: 'Kyle Chen', email: 'kyle.c@example.com', avatar: getAvatar('avatar-11'), category: 'Individual', status: 'Active', totalContribution: 250, lastContributionDate: '2023-05-19' },
 ];
+
+export const beneficiaryCategories: Category[] = [
+    { id: 'ben-cat-1', name: 'Student' },
+    { id: 'ben-cat-2', name: 'Researcher' },
+    { id: 'ben-cat-3', name: 'Educator' },
+];
+
+export const contributorCategories: Category[] = [
+    { id: 'con-cat-1', name: 'Individual' },
+    { id: 'con-cat-2', name: 'Corporate' },
+    { id: 'con-cat-3', name: 'Foundation' },
+];
+
+export const userProfile: UserProfile = {
+    name: 'Admin User',
+    email: 'admin@eduaid.org',
+};
