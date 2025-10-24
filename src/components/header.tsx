@@ -1,3 +1,5 @@
+
+'use client';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
@@ -11,9 +13,11 @@ import {
 import { Button } from '@/components/ui/button';
 import { SidebarTrigger } from '@/components/ui/sidebar';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { useAuth } from '@/hooks/use-auth';
 
 export function Header() {
   const userAvatar = PlaceHolderImages.find(img => img.id === 'avatar-12');
+  const { logout } = useAuth();
   
   return (
     <header className="flex h-16 items-center gap-4 border-b bg-card px-4 md:px-6 sticky top-0 z-30">
@@ -40,7 +44,7 @@ export function Header() {
             <DropdownMenuItem asChild><Link href="/dashboard/settings">Settings</Link></DropdownMenuItem>
             <DropdownMenuItem>Support</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Logout</DropdownMenuItem>
+            <DropdownMenuItem onClick={logout}>Logout</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
