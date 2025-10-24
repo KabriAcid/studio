@@ -8,8 +8,9 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Sparkles, Loader2 } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { LoadingOverlay } from '@/components/ui/loading-overlay';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -31,13 +32,14 @@ export default function LoginPage() {
         title: 'Login Failed',
         description: (error as Error).message,
       });
-    } finally {
-        setIsLoading(false);
-    }
+      setIsLoading(false); // Only stop loading on error
+    } 
+    // No need to set isLoading to false on success, as the page will redirect.
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-background p-4">
+      <LoadingOverlay isLoading={isLoading} />
       <Card className="w-full max-w-sm shadow-2xl">
         <CardHeader className="text-center">
           <div className="flex justify-center items-center gap-2 mb-4">
@@ -74,7 +76,7 @@ export default function LoginPage() {
               />
             </div>
             <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? <Loader2 className="animate-spin" /> : 'Sign In'}
+              Sign In
             </Button>
           </form>
         </CardContent>
