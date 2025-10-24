@@ -14,8 +14,8 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Mock user data
-const MOCK_USER = { email: 'admin@example.com', password: 'password' };
+// Mock user data - updated to simplify login
+const MOCK_USER = { email: 'admin@example.com' };
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<{ email: string } | null>(null);
@@ -38,8 +38,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const login = async (email: string, pass: string) => {
     return new Promise<void>((resolve, reject) => {
         setTimeout(() => {
-            if (email === MOCK_USER.email && pass === MOCK_USER.password) {
-                const userData = { email: MOCK_USER.email };
+            if (email && pass) { // Allow any non-empty email and password
+                const userData = { email };
                 setUser(userData);
                 try {
                     localStorage.setItem('user', JSON.stringify(userData));
@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                 }
                 resolve();
             } else {
-                reject(new Error('Invalid email or password'));
+                reject(new Error('Please enter a valid email and password'));
             }
         }, 500);
     });
