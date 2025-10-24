@@ -1,6 +1,8 @@
 
+'use client';
+
 import Image from 'next/image';
-import { MoreHorizontal, PlusCircle } from 'lucide-react';
+import { MoreHorizontal, PlusCircle, Pencil, Eye } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -21,8 +23,32 @@ import {
 } from '@/components/ui/table';
 import { contributors } from '@/lib/placeholder-data';
 import { cn } from '@/lib/utils';
+import { useState } from 'react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { ContributorForm } from '@/components/contributor-form';
+import type { Contributor } from '@/lib/types';
 
 export default function ContributorsPage() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedContributor, setSelectedContributor] = useState<Contributor | undefined>(undefined);
+
+    const handleNewContributor = () => {
+        setSelectedContributor(undefined);
+        setIsModalOpen(true);
+    };
+
+    const handleEditContributor = (contributor: Contributor) => {
+        setSelectedContributor(contributor);
+        setIsModalOpen(true);
+    };
+
+    const handleFormSubmit = (values: any) => {
+        console.log('Form values:', values);
+        // Here you would typically handle form submission,
+        // e.g., by calling an API to create/update a contributor.
+        setIsModalOpen(false);
+    };
+
     return (
         <div className="p-4 md:p-8 lg:p-10 space-y-8">
             <div className="flex items-center justify-between">
@@ -30,10 +56,20 @@ export default function ContributorsPage() {
                     <h1 className="text-4xl font-bold font-headline tracking-tight">Contributors</h1>
                     <p className="text-lg text-muted-foreground">Manage your organization's contributors.</p>
                 </div>
-                <Button size="lg">
-                    <PlusCircle className="mr-2 h-5 w-5" />
-                    New Contributor
-                </Button>
+                <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+                    <DialogTrigger asChild>
+                        <Button size="lg" onClick={handleNewContributor}>
+                            <PlusCircle className="mr-2 h-5 w-5" />
+                            New Contributor
+                        </Button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-[425px]">
+                        <DialogHeader>
+                            <DialogTitle>{selectedContributor ? 'Edit Contributor' : 'New Contributor'}</DialogTitle>
+                        </DialogHeader>
+                        <ContributorForm contributor={selectedContributor} onSubmit={handleFormSubmit} />
+                    </DialogContent>
+                </Dialog>
             </div>
 
             <Card className="shadow-[0_4px_12px_rgba(0,0,0,0.04),_0_1px_4px_rgba(0,0,0,0.06)] border-0">
@@ -82,21 +118,17 @@ export default function ContributorsPage() {
                                     </Badge>
                                     </TableCell>
                                     <TableCell className="text-right">${contributor.totalContribution.toLocaleString()}</TableCell>
-                                    <TableCell className="text-right">
-                                        <DropdownMenu>
-                                            <DropdownMenuTrigger asChild>
-                                                <Button aria-haspopup="true" size="icon" variant="ghost">
-                                                    <MoreHorizontal className="h-4 w-4" />
-                                                    <span className="sr-only">Toggle menu</span>
-                                                </Button>
-                                            </DropdownMenuTrigger>
-                                            <DropdownMenuContent align="end">
-                                                <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                                                <DropdownMenuItem>Edit</DropdownMenuItem>
-                                                <DropdownMenuItem>View Details</DropdownMenuItem>
-                                                <DropdownMenuItem className="text-red-600">Delete</DropdownMenuItem>
-                                            </DropdownMenuContent>
-                                        </DropdownMenu>
+                                    <TableCell>
+                                        <div className="flex items-center justify-end gap-2">
+                                            <Button variant="ghost" size="icon" onClick={() => handleEditContributor(contributor)}>
+                                                <Pencil className="h-4 w-4" />
+                                                <span className="sr-only">Edit</span>
+                                            </Button>
+                                            <Button variant="ghost" size="icon">
+                                                <Eye className="h-4 w-4" />
+                                                <span className="sr-only">View Details</span>
+                                            </Button>
+                                        </div>
                                     </TableCell>
                                 </TableRow>
                             ))}
