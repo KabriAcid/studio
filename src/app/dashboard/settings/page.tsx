@@ -104,22 +104,7 @@ export default function SettingsPage() {
             <ProfileForm profile={profile} onSubmit={handleProfileFormSubmit} />
         </DialogContent>
       </Dialog>
-      <AlertDialog onOpenChange={(open) => !open && setCategoryToDelete(null)}>
-        <AlertDialogContent>
-            <AlertDialogHeader>
-                <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-                <AlertDialogDescription>
-                    This action cannot be undone. This will permanently delete the category.
-                </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction onClick={handleDeleteCategory}>Delete</AlertDialogAction>
-            </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
-
-
+      
       <div className="space-y-2">
         <h1 className="text-4xl font-bold font-headline tracking-tight">Settings</h1>
         <p className="text-lg text-muted-foreground">Manage your application settings and categories.</p>
@@ -131,78 +116,92 @@ export default function SettingsPage() {
           <TabsTrigger value="account">Account</TabsTrigger>
         </TabsList>
         <TabsContent value="categories">
-          <div className="grid gap-6 md:grid-cols-2">
-            <Card className="shadow-[0_4px_12px_rgba(0,0,0,0.04),_0_1px_4px_rgba(0,0,0,0.06)] border-0">
-              <CardHeader className="flex flex-row items-center justify-between">
-                <div>
-                  <CardTitle className="text-2xl font-headline">Beneficiary Categories</CardTitle>
-                  <CardDescription className="text-base">
-                    Manage categories for beneficiaries.
-                  </CardDescription>
-                </div>
-                <Button size="sm" onClick={() => handleNewCategory('beneficiary')}>
-                  <PlusCircle className="mr-2 h-4 w-4" />
-                  Add New
-                </Button>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                  {beneficiaryCategories.map(cat => (
-                    <div key={cat.id} className="flex items-center justify-between rounded-lg border p-3">
-                      <span className="font-medium">{cat.name}</span>
-                       <div className="flex items-center gap-2">
-                        <Button variant="ghost" size="icon" onClick={() => handleEditCategory(cat, 'beneficiary')}>
-                          <Pencil className="h-4 w-4" />
-                          <span className="sr-only">Edit</span>
-                        </Button>
-                        <AlertDialogTrigger asChild>
-                            <Button variant="ghost" size="icon" onClick={() => setCategoryToDelete({id: cat.id, type: 'beneficiary'})}>
-                                <Trash2 className="h-4 w-4 text-destructive" />
-                                <span className="sr-only">Delete</span>
-                            </Button>
-                        </AlertDialogTrigger>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-            <Card className="shadow-[0_4px_12px_rgba(0,0,0,0.04),_0_1px_4px_rgba(0,0,0,0.06)] border-0">
-              <CardHeader className="flex flex-row items-center justify-between">
-                <div>
-                    <CardTitle className="text-2xl font-headline">Contributor Categories</CardTitle>
+          <AlertDialog onOpenChange={(open) => !open && setCategoryToDelete(null)}>
+            <div className="grid gap-6 md:grid-cols-2">
+              <Card className="shadow-[0_4px_12px_rgba(0,0,0,0.04),_0_1px_4px_rgba(0,0,0,0.06)] border-0">
+                <CardHeader className="flex flex-row items-center justify-between">
+                  <div>
+                    <CardTitle className="text-2xl font-headline">Beneficiary Categories</CardTitle>
                     <CardDescription className="text-base">
-                        Manage categories for contributors.
+                      Manage categories for beneficiaries.
                     </CardDescription>
-                </div>
-                <Button size="sm" onClick={() => handleNewCategory('contributor')}>
+                  </div>
+                  <Button size="sm" onClick={() => handleNewCategory('beneficiary')}>
                     <PlusCircle className="mr-2 h-4 w-4" />
                     Add New
-                </Button>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                    {contributorCategories.map(cat => (
-                        <div key={cat.id} className="flex items-center justify-between rounded-lg border p-3">
-                            <span className="font-medium">{cat.name}</span>
-                            <div className="flex items-center gap-2">
-                                <Button variant="ghost" size="icon" onClick={() => handleEditCategory(cat, 'contributor')}>
-                                    <Pencil className="h-4 w-4" />
-                                    <span className="sr-only">Edit</span>
-                                </Button>
-                                <AlertDialogTrigger asChild>
-                                    <Button variant="ghost" size="icon" onClick={() => setCategoryToDelete({id: cat.id, type: 'contributor'})}>
-                                        <Trash2 className="h-4 w-4 text-destructive" />
-                                        <span className="sr-only">Delete</span>
-                                    </Button>
-                                </AlertDialogTrigger>
-                            </div>
+                  </Button>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-2">
+                    {beneficiaryCategories.map(cat => (
+                      <div key={cat.id} className="flex items-center justify-between rounded-lg border p-3">
+                        <span className="font-medium">{cat.name}</span>
+                        <div className="flex items-center gap-2">
+                          <Button variant="ghost" size="icon" onClick={() => handleEditCategory(cat, 'beneficiary')}>
+                            <Pencil className="h-4 w-4" />
+                            <span className="sr-only">Edit</span>
+                          </Button>
+                          <AlertDialogTrigger asChild>
+                              <Button variant="ghost" size="icon" onClick={() => setCategoryToDelete({id: cat.id, type: 'beneficiary'})}>
+                                  <Trash2 className="h-4 w-4 text-destructive" />
+                                  <span className="sr-only">Delete</span>
+                              </Button>
+                          </AlertDialogTrigger>
                         </div>
+                      </div>
                     ))}
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="shadow-[0_4px_12px_rgba(0,0,0,0.04),_0_1px_4px_rgba(0,0,0,0.06)] border-0">
+                <CardHeader className="flex flex-row items-center justify-between">
+                  <div>
+                      <CardTitle className="text-2xl font-headline">Contributor Categories</CardTitle>
+                      <CardDescription className="text-base">
+                          Manage categories for contributors.
+                      </CardDescription>
+                  </div>
+                  <Button size="sm" onClick={() => handleNewCategory('contributor')}>
+                      <PlusCircle className="mr-2 h-4 w-4" />
+                      Add New
+                  </Button>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-2">
+                      {contributorCategories.map(cat => (
+                          <div key={cat.id} className="flex items-center justify-between rounded-lg border p-3">
+                              <span className="font-medium">{cat.name}</span>
+                              <div className="flex items-center gap-2">
+                                  <Button variant="ghost" size="icon" onClick={() => handleEditCategory(cat, 'contributor')}>
+                                      <Pencil className="h-4 w-4" />
+                                      <span className="sr-only">Edit</span>
+                                  </Button>
+                                  <AlertDialogTrigger asChild>
+                                      <Button variant="ghost" size="icon" onClick={() => setCategoryToDelete({id: cat.id, type: 'contributor'})}>
+                                          <Trash2 className="h-4 w-4 text-destructive" />
+                                          <span className="sr-only">Delete</span>
+                                      </Button>
+                                  </AlertDialogTrigger>
+                              </div>
+                          </div>
+                      ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+             <AlertDialogContent>
+                <AlertDialogHeader>
+                    <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                    <AlertDialogDescription>
+                        This action cannot be undone. This will permanently delete the category.
+                    </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction onClick={handleDeleteCategory}>Delete</AlertDialogAction>
+                </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </TabsContent>
         <TabsContent value="account">
           <Card className="shadow-[0_4px_12px_rgba(0,0,0,0.04),_0_1px_4px_rgba(0,0,0,0.06)] border-0">
