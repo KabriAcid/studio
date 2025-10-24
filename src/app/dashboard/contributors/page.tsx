@@ -2,7 +2,7 @@
 'use client';
 
 import Image from 'next/image';
-import { PlusCircle, Pencil, Eye } from 'lucide-react';
+import { PlusCircle, Pencil, Eye, HeartHandshake, Users, DollarSign, UserPlus } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -14,13 +14,15 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { contributors } from '@/lib/placeholder-data';
+import { contributors, contributorStats } from '@/lib/placeholder-data';
 import { cn } from '@/lib/utils';
 import { useState, useEffect } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { ContributorForm } from '@/components/contributor-form';
 import type { Contributor } from '@/lib/types';
 import { TableSkeleton } from '@/components/table-skeleton';
+import { KpiCard } from '@/components/kpi-card';
+import { Skeleton } from '@/components/ui/skeleton';
 
 export default function ContributorsPage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -51,6 +53,8 @@ export default function ContributorsPage() {
         setIsModalOpen(false);
     };
 
+    const icons = [<HeartHandshake />, <Users />, <DollarSign />, <UserPlus />];
+
     return (
         <div className="p-4 md:p-8 lg:p-10 space-y-8">
             <div className="flex items-center justify-between">
@@ -73,6 +77,29 @@ export default function ContributorsPage() {
                     </DialogContent>
                 </Dialog>
             </div>
+
+            {isLoading ? (
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                {Array.from({ length: 4 }).map((_, i) => (
+                    <Card key={i} className="shadow-[0_4px_12px_rgba(0,0,0,0.04),_0_1px_4px_rgba(0,0,0,0.06)] border-0">
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                            <Skeleton className="h-5 w-2/5" />
+                            <Skeleton className="h-6 w-6 rounded-sm" />
+                        </CardHeader>
+                        <CardContent>
+                            <Skeleton className="h-8 w-1/2 mb-2" />
+                            <Skeleton className="h-4 w-3/5" />
+                        </CardContent>
+                    </Card>
+                ))}
+            </div>
+            ) : (
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                {contributorStats.map((stat, index) => (
+                    <KpiCard key={stat.title} {...stat} icon={icons[index]} />
+                ))}
+            </div>
+            )}
 
             <Card className="shadow-[0_4px_12px_rgba(0,0,0,0.04),_0_1px_4px_rgba(0,0,0,0.06)] border-0">
                 <CardHeader>

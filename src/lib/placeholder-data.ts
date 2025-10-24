@@ -30,6 +30,60 @@ export const financialStats: FinancialStat[] = [
   },
 ];
 
+export const beneficiaryStats: FinancialStat[] = [
+  {
+    title: 'Total Beneficiaries',
+    value: '152',
+    change: '+12 this month',
+    changeType: 'increase',
+  },
+  {
+    title: 'Active Beneficiaries',
+    value: '130',
+    change: '+3 this month',
+    changeType: 'increase',
+  },
+  {
+    title: 'Total Disbursed',
+    value: '$28,750.40',
+    change: '+18.3% from last month',
+    changeType: 'increase',
+  },
+  {
+    title: 'Avg. Disbursement',
+    value: '$189.15',
+    change: '+2.5% from last month',
+    changeType: 'increase',
+  },
+];
+
+export const contributorStats: FinancialStat[] = [
+    {
+      title: 'Total Contributors',
+      value: '48',
+      change: '+5 this month',
+      changeType: 'increase',
+    },
+    {
+      title: 'Active Contributors',
+      value: '35',
+      change: '-1 from last month',
+      changeType: 'decrease',
+    },
+    {
+      title: 'Total Contributions',
+      value: '$45,231.89',
+      change: '+20.1% from last month',
+      changeType: 'increase',
+    },
+    {
+      title: 'Avg. Contribution',
+      value: '$942.33',
+      change: '+8.1% from last month',
+      changeType: 'increase',
+    },
+  ];
+
 export const monthlyFinancials: MonthlyData[] = [
   { month: 'Jan', income: 4000, expenses: 2400 },
   { month: 'Feb', income: 3000, expenses: 1398 },
