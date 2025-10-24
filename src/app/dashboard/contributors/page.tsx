@@ -23,6 +23,7 @@ import type { Contributor } from '@/lib/types';
 import { TableSkeleton } from '@/components/table-skeleton';
 import { KpiCard } from '@/components/kpi-card';
 import { Skeleton } from '@/components/ui/skeleton';
+import Link from 'next/link';
 
 export default function ContributorsPage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -156,10 +157,12 @@ export default function ContributorsPage() {
                                                 <Pencil className="h-4 w-4" />
                                                 <span className="sr-only">Edit</span>
                                             </Button>
-                                            <Button variant="ghost" size="icon">
-                                                <Eye className="h-4 w-4" />
-                                                <span className="sr-only">View Details</span>
-                                            </Button>
+                                             <Link href={`/dashboard/contributors/${contributor.id}`}>
+                                                <Button variant="ghost" size="icon">
+                                                    <Eye className="h-4 w-4" />
+                                                    <span className="sr-only">View Details</span>
+                                                </Button>
+                                            </Link>
                                         </div>
                                     </TableCell>
                                 </TableRow>
