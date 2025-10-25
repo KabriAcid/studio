@@ -61,8 +61,8 @@ export default function LandingPage() {
                          <div className="relative h-[60vh] min-h-[500px] w-full">
                              <Image
                                 src={slide.imageUrl}
-                                layout="fill"
-                                objectFit="cover"
+                                fill
+                                style={{objectFit: "cover"}}
                                 alt={slide.alt}
                                 className="absolute inset-0 z-[-1] brightness-75"
                                 data-ai-hint={slide.imageHint}

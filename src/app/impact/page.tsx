@@ -40,8 +40,8 @@ export default function ImpactPage() {
              <div className="absolute inset-0 bg-black/50"></div>
              <Image
                 src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop"
-                layout="fill"
-                objectFit="cover"
+                fill
+                style={{objectFit: "cover"}}
                 alt="Happy students graduating"
                 className="absolute inset-0 z-[-1] opacity-80"
                 data-ai-hint="graduating students"
@@ -93,6 +93,7 @@ export default function ImpactPage() {
                                     data-ai-hint="person face"
                                 />
                                 <p className="text-muted-foreground italic">&ldquo;{t.story}&rdquo;</p>
+
                                 <div className="mt-4 font-semibold">
                                     <p className="text-lg">{t.name}</p>
                                     <p className="text-sm text-primary">{t.program}</p>

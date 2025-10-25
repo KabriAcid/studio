@@ -56,8 +56,8 @@ export default function DonatePage() {
             <div className="absolute inset-0 bg-black/60"></div>
             <Image
                 src="https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=2070&auto=format&fit=crop"
-                layout="fill"
-                objectFit="cover"
+                fill
+                style={{objectFit: "cover"}}
                 alt="A person giving a donation"
                 className="absolute inset-0 z-[-1] opacity-90"
                 data-ai-hint="donation hands"

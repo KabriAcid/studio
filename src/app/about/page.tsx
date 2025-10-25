@@ -43,8 +43,8 @@ export default function AboutPage() {
             <div className="absolute inset-0 bg-black/50"></div>
             <Image
                 src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop"
-                layout="fill"
-                objectFit="cover"
+                fill
+                style={{objectFit: "cover"}}
                 alt="Our team working"
                 className="absolute inset-0 z-[-1] opacity-80"
                 data-ai-hint="team meeting"
@@ -102,8 +102,8 @@ export default function AboutPage() {
               <motion.div variants={itemVariants} className="relative h-80 md:h-96 rounded-lg overflow-hidden shadow-lg">
                 <Image
                     src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format&fit=crop"
-                    layout="fill"
-                    objectFit="cover"
+                    fill
+                    style={{objectFit: "cover"}}
                     alt="A group of people in a meeting"
                     data-ai-hint="team discussion"
                 />
