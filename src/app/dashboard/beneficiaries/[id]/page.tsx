@@ -19,6 +19,8 @@ export default function BeneficiaryDetailsPage({ params }: { params: { id: strin
   if (!beneficiary) {
     notFound();
   }
+  
+  const beneficiaryName = `${beneficiary.firstName} ${beneficiary.lastName}`;
 
   // Placeholder for payment history
   const paymentHistory = [
@@ -31,7 +33,7 @@ export default function BeneficiaryDetailsPage({ params }: { params: { id: strin
   
   const breadcrumbItems = [
     { label: 'Beneficiaries', href: '/dashboard/beneficiaries' },
-    { label: beneficiary.name },
+    { label: beneficiaryName },
   ];
 
   return (
@@ -51,12 +53,12 @@ export default function BeneficiaryDetailsPage({ params }: { params: { id: strin
             src={beneficiary.avatar}
             width={100}
             height={100}
-            alt={beneficiary.name}
+            alt={beneficiaryName}
             className="rounded-full border-4 border-card"
             data-ai-hint="person face"
           />
           <div className="flex-1">
-            <CardTitle className="text-3xl font-headline">{beneficiary.name}</CardTitle>
+            <CardTitle className="text-3xl font-headline">{beneficiaryName}</CardTitle>
             <CardDescription className="text-base">{beneficiary.email}</CardDescription>
             <div className="flex items-center gap-2 mt-2">
                 <Badge variant={beneficiary.status === 'Active' ? 'default' : 'secondary'} className={cn(

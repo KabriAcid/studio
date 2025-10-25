@@ -130,12 +130,12 @@ export default function BeneficiariesPage() {
                         src={beneficiary.avatar}
                         width={40}
                         height={40}
-                        alt={beneficiary.name}
+                        alt={`${beneficiary.firstName} ${beneficiary.lastName}`}
                         className="rounded-full"
                         data-ai-hint="person face"
                       />
                       <div>
-                        <div className="font-bold">{beneficiary.name}</div>
+                        <div className="font-bold">{beneficiary.firstName} {beneficiary.lastName}</div>
                         <div className="text-sm text-muted-foreground">{beneficiary.email}</div>
                       </div>
                     </div>

@@ -130,12 +130,12 @@ export default function ContributorsPage() {
                                                 src={contributor.avatar}
                                                 width={40}
                                                 height={40}
-                                                alt={contributor.name}
+                                                alt={`${contributor.firstName} ${contributor.lastName}`}
                                                 className="rounded-full"
                                                 data-ai-hint="person face"
                                             />
                                             <div>
-                                                <div className="font-bold">{contributor.name}</div>
+                                                <div className="font-bold">{contributor.firstName} {contributor.lastName}</div>
                                                 <div className="text-sm text-muted-foreground">{contributor.email}</div>
                                             </div>
                                         </div>

@@ -135,11 +135,11 @@ export default function DashboardPage() {
                         {beneficiaries.slice(0, 5).map(beneficiary => (
                             <div key={beneficiary.id} className="flex items-center gap-4">
                                 <Avatar className="h-10 w-10">
-                                    <AvatarImage src={beneficiary.avatar} alt={beneficiary.name} data-ai-hint="person face" />
-                                    <AvatarFallback>{beneficiary.name.charAt(0)}</AvatarFallback>
+                                    <AvatarImage src={beneficiary.avatar} alt={`${beneficiary.firstName} ${beneficiary.lastName}`} data-ai-hint="person face" />
+                                    <AvatarFallback>{beneficiary.firstName.charAt(0)}</AvatarFallback>
                                 </Avatar>
                                 <div className="flex-1">
-                                    <p className="font-semibold truncate">{beneficiary.name}</p>
+                                    <p className="font-semibold truncate">{beneficiary.firstName} {beneficiary.lastName}</p>
                                     <p className="text-sm text-muted-foreground truncate">{beneficiary.email}</p>
                                 </div>
                                 <div className="text-sm text-right text-muted-foreground">${beneficiary.totalPayments.toLocaleString()}</div>

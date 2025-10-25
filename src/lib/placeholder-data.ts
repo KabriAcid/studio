@@ -1,3 +1,4 @@
+
 import type { Beneficiary, Contributor, FinancialStat, MonthlyData, Category, UserProfile } from '@/lib/types';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
@@ -100,20 +101,20 @@ export const monthlyFinancials: MonthlyData[] = [
 ];
 
 export const beneficiaries: Beneficiary[] = [
-  { id: '1', name: 'Alice Johnson', email: 'alice.j@example.com', avatar: getAvatar('avatar-1'), category: 'Student', status: 'Active', totalPayments: 2500, paymentDate: '2023-05-20' },
-  { id: '2', name: 'Bob Williams', email: 'bob.w@example.com', avatar: getAvatar('avatar-2'), category: 'Student', status: 'Active', totalPayments: 1800, paymentDate: '2023-05-18' },
-  { id: '3', name: 'Charlie Brown', email: 'charlie.b@example.com', avatar: getAvatar('avatar-3'), category: 'Researcher', status: 'Inactive', totalPayments: 5000, paymentDate: '2022-12-10' },
-  { id: '4', name: 'Diana Miller', email: 'diana.m@example.com', avatar: getAvatar('avatar-4'), category: 'Student', status: 'Graduated', totalPayments: 12000, paymentDate: '2021-06-01' },
-  { id: '5', name: 'Ethan Davis', email: 'ethan.d@example.com', avatar: getAvatar('avatar-5'), category: 'Educator', status: 'Active', totalPayments: 3200, paymentDate: '2023-04-30' },
-  { id: '6', name: 'Fiona Wilson', email: 'fiona.w@example.com', avatar: getAvatar('avatar-6'), category: 'Student', status: 'Active', totalPayments: 750, paymentDate: '2023-05-22' },
+  { id: '1', firstName: 'Alice', lastName: 'Johnson', email: 'alice.j@example.com', avatar: getAvatar('avatar-1'), category: 'Student', status: 'Active', totalPayments: 2500, paymentDate: '2023-05-20' },
+  { id: '2', firstName: 'Bob', lastName: 'Williams', email: 'bob.w@example.com', avatar: getAvatar('avatar-2'), category: 'Student', status: 'Active', totalPayments: 1800, paymentDate: '2023-05-18' },
+  { id: '3', firstName: 'Charlie', lastName: 'Brown', email: 'charlie.b@example.com', avatar: getAvatar('avatar-3'), category: 'Researcher', status: 'Inactive', totalPayments: 5000, paymentDate: '2022-12-10' },
+  { id: '4', firstName: 'Diana', lastName: 'Miller', email: 'diana.m@example.com', avatar: getAvatar('avatar-4'), category: 'Student', status: 'Graduated', totalPayments: 12000, paymentDate: '2021-06-01' },
+  { id: '5', firstName: 'Ethan', lastName: 'Davis', email: 'ethan.d@example.com', avatar: getAvatar('avatar-5'), category: 'Educator', status: 'Active', totalPayments: 3200, paymentDate: '2023-04-30' },
+  { id: '6', firstName: 'Fiona', lastName: 'Wilson', email: 'fiona.w@example.com', avatar: getAvatar('avatar-6'), category: 'Student', status: 'Active', totalPayments: 750, paymentDate: '2023-05-22' },
 ];
 
 export const contributors: Contributor[] = [
-    { id: '1', name: 'Grace Lee', email: 'grace.l@example.com', avatar: getAvatar('avatar-7'), category: 'Individual', status: 'Active', totalContribution: 5000, lastContributionDate: '2023-04-15' },
-    { id: '2', name: 'Heidi Turner', email: 'heidi.t@example.com', avatar: getAvatar('avatar-8'), category: 'Corporate', status: 'Active', totalContribution: 25000, lastContributionDate: '2023-03-01' },
-    { id: '3', name: 'Ivan Martinez', email: 'ivan.m@example.com', avatar: getAvatar('avatar-9'), category: 'Foundation', status: 'Paused', totalContribution: 100000, lastContributionDate: '2022-11-20' },
-    { id: '4', name: 'Judy Rodriguez', email: 'judy.r@example.com', avatar: getAvatar('avatar-10'), category: 'Individual', status: 'Inactive', totalContribution: 1000, lastContributionDate: '2021-02-05' },
-    { id: '5', name: 'Kyle Chen', email: 'kyle.c@example.com', avatar: getAvatar('avatar-11'), category: 'Individual', status: 'Active', totalContribution: 250, lastContributionDate: '2023-05-19' },
+    { id: '1', firstName: 'Grace', lastName: 'Lee', email: 'grace.l@example.com', avatar: getAvatar('avatar-7'), category: 'Individual', status: 'Active', totalContribution: 5000, lastContributionDate: '2023-04-15' },
+    { id: '2', firstName: 'Heidi', lastName: 'Turner', email: 'heidi.t@example.com', avatar: getAvatar('avatar-8'), category: 'Corporate', status: 'Active', totalContribution: 25000, lastContributionDate: '2023-03-01' },
+    { id: '3', firstName: 'Ivan', lastName: 'Martinez', email: 'ivan.m@example.com', avatar: getAvatar('avatar-9'), category: 'Foundation', status: 'Paused', totalContribution: 100000, lastContributionDate: '2022-11-20' },
+    { id: '4', firstName: 'Judy', lastName: 'Rodriguez', email: 'judy.r@example.com', avatar: getAvatar('avatar-10'), category: 'Individual', status: 'Inactive', totalContribution: 1000, lastContributionDate: '2021-02-05' },
+    { id: '5', firstName: 'Kyle', lastName: 'Chen', email: 'kyle.c@example.com', avatar: getAvatar('avatar-11'), category: 'Individual', status: 'Active', totalContribution: 250, lastContributionDate: '2023-05-19' },
 ];
 
 export const beneficiaryCategories: Category[] = [

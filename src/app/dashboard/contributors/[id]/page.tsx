@@ -19,6 +19,8 @@ export default function ContributorDetailsPage({ params }: { params: { id: strin
   if (!contributor) {
     notFound();
   }
+  
+  const contributorName = `${contributor.firstName} ${contributor.lastName}`;
 
   // Placeholder for contribution history
   const contributionHistory = [
@@ -29,7 +31,7 @@ export default function ContributorDetailsPage({ params }: { params: { id: strin
 
   const breadcrumbItems = [
     { label: 'Contributors', href: '/dashboard/contributors' },
-    { label: contributor.name },
+    { label: contributorName },
   ];
 
   return (
@@ -49,12 +51,12 @@ export default function ContributorDetailsPage({ params }: { params: { id: strin
             src={contributor.avatar}
             width={100}
             height={100}
-            alt={contributor.name}
+            alt={contributorName}
             className="rounded-full border-4 border-card"
             data-ai-hint="person face"
           />
           <div className="flex-1">
-            <CardTitle className="text-3xl font-headline">{contributor.name}</CardTitle>
+            <CardTitle className="text-3xl font-headline">{contributorName}</CardTitle>
             <CardDescription className="text-base">{contributor.email}</CardDescription>
             <div className="flex items-center gap-2 mt-2">
                 <Badge variant={contributor.status === 'Active' ? 'default' : 'secondary'} className={cn(

@@ -1,6 +1,8 @@
+
 export type Beneficiary = {
   id: string;
-  name: string;
+  firstName: string;
+  lastName: string;
   avatar: string;
   email: string;
   category: 'Student' | 'Researcher' | 'Educator';
@@ -11,7 +13,8 @@ export type Beneficiary = {
 
 export type Contributor = {
   id: string;
-  name: string;
+  firstName: string;
+  lastName: string;
   avatar: string;
   email: string;
   category: 'Individual' | 'Corporate' | 'Foundation';
@@ -34,7 +37,7 @@ export type MonthlyData = {
 };
 
 export type Category = {
-  id: string;
+  id:string;
   name: string;
 };
 

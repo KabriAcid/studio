@@ -17,19 +17,9 @@ import {
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import type { Beneficiary } from '@/lib/types';
+import { beneficiarySchema } from '@/lib/validation';
 
-const formSchema = z.object({
-  name: z.string().min(2, {
-    message: 'Name must be at least 2 characters.',
-  }),
-  email: z.string().email({
-    message: 'Please enter a valid email address.',
-  }),
-  category: z.enum(['Student', 'Researcher', 'Educator']),
-  status: z.enum(['Active', 'Inactive', 'Graduated']),
-});
-
-type BeneficiaryFormValues = z.infer<typeof formSchema>;
+type BeneficiaryFormValues = z.infer<typeof beneficiarySchema>;
 
 interface BeneficiaryFormProps {
   beneficiary?: Beneficiary;
@@ -38,9 +28,10 @@ interface BeneficiaryFormProps {
 
 export function BeneficiaryForm({ beneficiary, onSubmit }: BeneficiaryFormProps) {
   const form = useForm<BeneficiaryFormValues>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(beneficiarySchema),
     defaultValues: {
-      name: beneficiary?.name || '',
+      firstName: beneficiary?.firstName || '',
+      lastName: beneficiary?.lastName || '',
       email: beneficiary?.email || '',
       category: beneficiary?.category || 'Student',
       status: beneficiary?.status || 'Active',
@@ -50,19 +41,34 @@ export function BeneficiaryForm({ beneficiary, onSubmit }: BeneficiaryFormProps)
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Name</FormLabel>
-              <FormControl>
-                <Input placeholder="Enter name" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <div className="grid grid-cols-2 gap-4">
+            <FormField
+              control={form.control}
+              name="firstName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>First Name</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Enter first name" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="lastName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Last Name</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Enter last name" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+        </div>
         <FormField
           control={form.control}
           name="email"
