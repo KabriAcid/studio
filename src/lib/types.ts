@@ -85,4 +85,5 @@ export type BlogPost = {
   date: string;
   imageUrl: string;
   imageHint: string;
+  content: string;
 };
