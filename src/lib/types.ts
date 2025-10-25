@@ -59,3 +59,11 @@ export type UserProfile = {
     name: string;
     email: string;
 };
+
+export type TeamMember = {
+    id: number;
+    name: string;
+    role: string;
+    avatar: string;
+    bio: string;
+};
