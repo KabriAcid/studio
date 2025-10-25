@@ -9,6 +9,7 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
+  useSidebar,
 } from '@/components/ui/sidebar';
 
 const links = [
@@ -21,12 +22,19 @@ const links = [
 
 export function DashboardNav() {
   const pathname = usePathname();
+  const { setOpenMobile, isMobile } = useSidebar();
+
+  const handleClick = () => {
+    if (isMobile) {
+      setOpenMobile(false);
+    }
+  };
 
   return (
     <SidebarMenu>
       {links.map((link) => (
         <SidebarMenuItem key={link.href}>
-          <Link href={link.href}>
+          <Link href={link.href} onClick={handleClick}>
             <SidebarMenuButton
               isActive={pathname === link.href}
               tooltip={link.label}
