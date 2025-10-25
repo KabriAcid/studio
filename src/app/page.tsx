@@ -11,13 +11,38 @@ import {
   CarouselItem,
 } from '@/components/ui/carousel';
 import Autoplay from "embla-carousel-autoplay";
-import { heroSlides } from '@/lib/placeholder-data';
+import { heroSlides, teamMembers } from '@/lib/placeholder-data';
 import React from 'react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { motion } from 'framer-motion';
 
 export default function LandingPage() {
     const plugin = React.useRef(
       Autoplay({ delay: 5000, stopOnInteraction: true })
     );
+    
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.1,
+            delayChildren: 0.2,
+        },
+        },
+    };
+
+    const itemVariants = {
+        hidden: { y: 20, opacity: 0 },
+        visible: {
+        y: 0,
+        opacity: 1,
+        transition: {
+            duration: 0.5,
+        },
+        },
+    };
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -104,6 +129,42 @@ export default function LandingPage() {
                 </p>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Meet the Team Section */}
+        <section className="py-20 bg-muted">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold font-headline">Meet Our Officials</h2>
+              <p className="text-muted-foreground mt-2 text-lg">
+                The dedicated individuals behind our mission.
+              </p>
+            </div>
+            <motion.div 
+                className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+            >
+              {teamMembers.map((member) => (
+                <motion.div key={member.id} variants={itemVariants}>
+                    <Card className="text-center shadow-lg hover:shadow-xl transition-shadow duration-300">
+                        <CardContent className="p-6">
+                            <Avatar className="h-32 w-32 mx-auto mb-4 border-4 border-primary/20">
+                                <AvatarImage src={member.avatar} alt={member.name} data-ai-hint="person face" />
+                                <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
+                            </Avatar>
+                            <h3 className="text-xl font-bold">{member.name}</h3>
+                            <p className="text-primary font-medium">{member.role}</p>
+                            <p className="text-muted-foreground mt-2 text-sm">
+                            {member.bio}
+                            </p>
+                        </CardContent>
+                    </Card>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
         </section>
       </main>
