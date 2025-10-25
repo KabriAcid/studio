@@ -34,12 +34,13 @@ export function BeneficiaryForm({ beneficiary, onSubmit }: BeneficiaryFormProps)
       lastName: beneficiary?.lastName || '',
       email: beneficiary?.email || '',
       phoneNumber: beneficiary?.phoneNumber || '',
-      category: beneficiary?.category || 'Student',
-      status: beneficiary?.status || 'Active',
+      program: beneficiary?.program || 'Student',
+      enrollmentStatus: beneficiary?.enrollmentStatus || 'Active',
       lga: beneficiary?.lga || '',
       state: beneficiary?.state || '',
       class: beneficiary?.class || '',
       paymentType: beneficiary?.paymentType || 'Termly Fees',
+      category: beneficiary?.category || 'Orphan',
     },
   });
 
@@ -170,7 +171,7 @@ export function BeneficiaryForm({ beneficiary, onSubmit }: BeneficiaryFormProps)
             />
         </div>
         <div className="grid grid-cols-2 gap-4">
-            <FormField
+           <FormField
               control={form.control}
               name="category"
               render={({ field }) => (
@@ -183,9 +184,8 @@ export function BeneficiaryForm({ beneficiary, onSubmit }: BeneficiaryFormProps)
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="Student">Student</SelectItem>
-                      <SelectItem value="Researcher">Researcher</SelectItem>
-                      <SelectItem value="Educator">Educator</SelectItem>
+                      <SelectItem value="Orphan">Orphan</SelectItem>
+                      <SelectItem value="Indigent">Indigent</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -194,10 +194,10 @@ export function BeneficiaryForm({ beneficiary, onSubmit }: BeneficiaryFormProps)
             />
             <FormField
               control={form.control}
-              name="status"
+              name="enrollmentStatus"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Status</FormLabel>
+                  <FormLabel>Enrollment Status</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger>
@@ -215,6 +215,28 @@ export function BeneficiaryForm({ beneficiary, onSubmit }: BeneficiaryFormProps)
               )}
             />
         </div>
+        <FormField
+            control={form.control}
+            name="program"
+            render={({ field }) => (
+            <FormItem>
+                <FormLabel>Program</FormLabel>
+                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                    <SelectTrigger>
+                    <SelectValue placeholder="Select a program" />
+                    </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                    <SelectItem value="Student">Student</SelectItem>
+                    <SelectItem value="Researcher">Researcher</SelectItem>
+                    <SelectItem value="Educator">Educator</SelectItem>
+                </SelectContent>
+                </Select>
+                <FormMessage />
+            </FormItem>
+            )}
+        />
         <Button type="submit" className="w-full">{beneficiary ? 'Save Changes' : 'Create Beneficiary'}</Button>
       </form>
     </Form>

@@ -7,14 +7,15 @@ export type Beneficiary = {
   avatar: string;
   email: string;
   phoneNumber?: string;
-  category: 'Student' | 'Researcher' | 'Educator';
-  status: 'Active' | 'Inactive' | 'Graduated';
+  category: 'Orphan' | 'Indigent';
+  enrollmentStatus: 'Active' | 'Inactive' | 'Graduated';
   totalPayments: number;
   paymentDate: string;
   lga: string;
   state: string;
   class: string;
   paymentType: 'Registration Fees' | 'Termly Fees' | 'Book Grant' | 'Transport' | 'Distress';
+  program: 'Student' | 'Researcher' | 'Educator';
 };
 
 export type Contributor = {

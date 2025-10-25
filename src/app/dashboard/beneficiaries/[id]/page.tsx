@@ -61,15 +61,15 @@ export default function BeneficiaryDetailsPage({ params }: { params: { id: strin
             <CardTitle className="text-3xl font-headline">{beneficiaryName}</CardTitle>
             <CardDescription className="text-base">{beneficiary.email}</CardDescription>
             <div className="flex items-center gap-2 mt-2">
-                <Badge variant={beneficiary.status === 'Active' ? 'default' : 'secondary'} className={cn(
-                    beneficiary.status === 'Active' && 'bg-green-100 text-green-800 border-green-200',
-                    beneficiary.status === 'Inactive' && 'bg-gray-100 text-gray-800 border-gray-200',
-                    beneficiary.status === 'Graduated' && 'bg-purple-100 text-purple-800 border-purple-200'
+                <Badge variant={beneficiary.enrollmentStatus === 'Active' ? 'default' : 'secondary'} className={cn(
+                    beneficiary.enrollmentStatus === 'Active' && 'bg-green-100 text-green-800 border-green-200',
+                    beneficiary.enrollmentStatus === 'Inactive' && 'bg-gray-100 text-gray-800 border-gray-200',
+                    beneficiary.enrollmentStatus === 'Graduated' && 'bg-purple-100 text-purple-800 border-purple-200'
                 )}>
-                  {beneficiary.status}
+                  {beneficiary.enrollmentStatus}
                 </Badge>
                 <span className="text-sm text-muted-foreground">•</span>
-                <span className="text-sm text-muted-foreground">{beneficiary.category}</span>
+                <Badge variant={beneficiary.category === 'Orphan' ? 'default' : 'secondary'}>{beneficiary.category}</Badge>
             </div>
           </div>
         </CardHeader>
@@ -98,7 +98,7 @@ export default function BeneficiaryDetailsPage({ params }: { params: { id: strin
                         <div className="space-y-3">
                             <div className="flex flex-col">
                                 <span className="text-sm text-muted-foreground">Program</span>
-                                <span className="font-semibold">University Scholarship</span>
+                                <span className="font-semibold">{beneficiary.program}</span>
                             </div>
                             <div className="flex flex-col">
                                 <span className="text-sm text-muted-foreground">Current Class</span>

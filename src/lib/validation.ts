@@ -23,12 +23,13 @@ export const beneficiarySchema = z.object({
     message: 'Please enter a valid email address.',
   }),
   phoneNumber: z.string().optional(),
-  category: z.enum(['Student', 'Researcher', 'Educator']),
-  status: z.enum(['Active', 'Inactive', 'Graduated']),
+  program: z.enum(['Student', 'Researcher', 'Educator']),
+  enrollmentStatus: z.enum(['Active', 'Inactive', 'Graduated']),
   lga: z.string().min(2, { message: 'LGA is required.' }),
   state: z.string().min(2, { message: 'State is required.' }),
   class: z.string().min(1, { message: 'Class is required.' }),
   paymentType: z.enum(['Registration Fees', 'Termly Fees', 'Book Grant', 'Transport', 'Distress']),
+  category: z.enum(['Orphan', 'Indigent']),
 });
 
 

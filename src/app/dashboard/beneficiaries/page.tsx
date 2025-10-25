@@ -138,11 +138,11 @@ export default function BeneficiariesPage() {
               <TableHeader>
                 <TableRow>
                   <TableHead>Name</TableHead>
+                  <TableHead>Category</TableHead>
                   <TableHead>State</TableHead>
                   <TableHead>LGA</TableHead>
                   <TableHead>Class</TableHead>
-                  <TableHead>Payment Type</TableHead>
-                  <TableHead>Status</TableHead>
+                  <TableHead>Enrollment Status</TableHead>
                   <TableHead className="text-right">Total Payments</TableHead>
                   <TableHead className="text-right">Actions</TableHead>
                 </TableRow>
@@ -166,19 +166,19 @@ export default function BeneficiariesPage() {
                         </div>
                       </div>
                     </TableCell>
+                    <TableCell>
+                      <Badge variant={beneficiary.category === 'Orphan' ? 'default' : 'secondary'}>{beneficiary.category}</Badge>
+                    </TableCell>
                     <TableCell>{beneficiary.state}</TableCell>
                     <TableCell>{beneficiary.lga}</TableCell>
                     <TableCell>{beneficiary.class}</TableCell>
                     <TableCell>
-                        <Badge variant="secondary">{beneficiary.paymentType}</Badge>
-                    </TableCell>
-                    <TableCell>
-                      <Badge variant={beneficiary.status === 'Active' ? 'default' : 'secondary'} className={cn(
-                          beneficiary.status === 'Active' && 'bg-green-100 text-green-800 border-green-200',
-                          beneficiary.status === 'Inactive' && 'bg-gray-100 text-gray-800 border-gray-200',
-                          beneficiary.status === 'Graduated' && 'bg-purple-100 text-purple-800 border-purple-200'
+                      <Badge variant={beneficiary.enrollmentStatus === 'Active' ? 'default' : 'secondary'} className={cn(
+                          beneficiary.enrollmentStatus === 'Active' && 'bg-green-100 text-green-800 border-green-200',
+                          beneficiary.enrollmentStatus === 'Inactive' && 'bg-gray-100 text-gray-800 border-gray-200',
+                          beneficiary.enrollmentStatus === 'Graduated' && 'bg-purple-100 text-purple-800 border-purple-200'
                       )}>
-                        {beneficiary.status}
+                        {beneficiary.enrollmentStatus}
                       </Badge>
                     </TableCell>
                     <TableCell className="text-right">₦{beneficiary.totalPayments.toLocaleString()}</TableCell>
