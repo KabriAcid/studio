@@ -33,6 +33,7 @@ export function ContributorForm({ contributor, onSubmit }: ContributorFormProps)
       firstName: contributor?.firstName || '',
       lastName: contributor?.lastName || '',
       email: contributor?.email || '',
+      phoneNumber: contributor?.phoneNumber || '',
       category: contributor?.category || 'Individual',
       status: contributor?.status || 'Active',
     },
@@ -69,19 +70,34 @@ export function ContributorForm({ contributor, onSubmit }: ContributorFormProps)
               )}
             />
         </div>
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input placeholder="Enter email" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <div className="grid grid-cols-2 gap-4">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Enter email" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="phoneNumber"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Phone Number</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Enter phone number" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+        </div>
         <div className="grid grid-cols-2 gap-4">
             <FormField
               control={form.control}

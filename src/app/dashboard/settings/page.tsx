@@ -132,7 +132,7 @@ export default function SettingsPage() {
         </DialogContent>
       </Dialog>
       <Dialog open={isContributorModalOpen} onOpenChange={setIsContributorModalOpen}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="sm:max-w-lg">
           <DialogHeader>
             <DialogTitle>{selectedContributor ? 'Edit Contributor' : 'New Contributor'}</DialogTitle>
           </DialogHeader>

@@ -33,6 +33,7 @@ export function BeneficiaryForm({ beneficiary, onSubmit }: BeneficiaryFormProps)
       firstName: beneficiary?.firstName || '',
       lastName: beneficiary?.lastName || '',
       email: beneficiary?.email || '',
+      phoneNumber: beneficiary?.phoneNumber || '',
       category: beneficiary?.category || 'Student',
       status: beneficiary?.status || 'Active',
       lga: beneficiary?.lga || '',
@@ -73,19 +74,34 @@ export function BeneficiaryForm({ beneficiary, onSubmit }: BeneficiaryFormProps)
               )}
             />
         </div>
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input placeholder="Enter email" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <div className="grid grid-cols-2 gap-4">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Enter email" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="phoneNumber"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Phone Number</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Enter phone number" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+        </div>
         <div className="grid grid-cols-2 gap-4">
             <FormField
               control={form.control}

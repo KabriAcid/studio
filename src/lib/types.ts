@@ -5,6 +5,7 @@ export type Beneficiary = {
   lastName: string;
   avatar: string;
   email: string;
+  phoneNumber?: string;
   category: 'Student' | 'Researcher' | 'Educator';
   status: 'Active' | 'Inactive' | 'Graduated';
   totalPayments: number;
@@ -21,6 +22,7 @@ export type Contributor = {
   lastName: string;
   avatar: string;
   email: string;
+  phoneNumber?: string;
   category: 'Individual' | 'Corporate' | 'Foundation';
   status: 'Active' | 'Inactive' | 'Paused';
   totalContribution: number;

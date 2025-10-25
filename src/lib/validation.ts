@@ -22,6 +22,7 @@ export const beneficiarySchema = z.object({
   email: z.string().email({
     message: 'Please enter a valid email address.',
   }),
+  phoneNumber: z.string().optional(),
   category: z.enum(['Student', 'Researcher', 'Educator']),
   status: z.enum(['Active', 'Inactive', 'Graduated']),
   lga: z.string().min(2, { message: 'LGA is required.' }),
@@ -41,6 +42,7 @@ export const contributorSchema = z.object({
   email: z.string().email({
     message: 'Please enter a valid email address.',
   }),
+  phoneNumber: z.string().optional(),
   category: z.enum(['Individual', 'Corporate', 'Foundation']),
   status: z.enum(['Active', 'Inactive', 'Paused']),
 });

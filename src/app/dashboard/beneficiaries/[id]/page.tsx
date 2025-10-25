@@ -128,7 +128,7 @@ export default function BeneficiaryDetailsPage({ params }: { params: { id: strin
                             </div>
                              <div className="flex items-center gap-2">
                                 <Phone className="h-4 w-4 text-muted-foreground" />
-                                <span className="text-muted-foreground">No phone number</span>
+                                <span className="text-muted-foreground">{beneficiary.phoneNumber || 'No phone number'}</span>
                             </div>
                         </div>
                     </CardContent>
