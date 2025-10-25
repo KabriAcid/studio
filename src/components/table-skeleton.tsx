@@ -40,8 +40,8 @@ export function TableSkeleton() {
                   <TableCell className="text-right"><Skeleton className="h-4 w-16 ml-auto" /></TableCell>
                   <TableCell>
                     <div className="flex items-center justify-end gap-2">
-                        <Skeleton className="h-8 w-8" />
-                        <Skeleton className="h-8 w-8" />
+                        <Skeleton className="h-8 w-8 rounded-full" />
+                        <Skeleton className="h-8 w-8 rounded-full" />
                     </div>
                   </TableCell>
                 </TableRow>
@@ -50,3 +50,5 @@ export function TableSkeleton() {
           </Table>
     )
 }
+
+    
