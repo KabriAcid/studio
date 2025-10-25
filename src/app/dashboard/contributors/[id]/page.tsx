@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { contributors } from '@/lib/placeholder-data';
 import { cn } from '@/lib/utils';
-import { ArrowLeft, DollarSign, CalendarDays, History, Mail, Phone, FileText, Gift } from 'lucide-react';
+import { ArrowLeft, DollarSign, History, Mail, Phone, FileText, Gift } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -30,7 +30,7 @@ export default function ContributorDetailsPage({ params }: { params: { id: strin
   ];
 
   const breadcrumbItems = [
-    { label: 'Contributors', href: '/dashboard/contributors' },
+    { label: 'Settings', href: '/dashboard/settings' },
     { label: contributorName },
   ];
 
@@ -38,10 +38,10 @@ export default function ContributorDetailsPage({ params }: { params: { id: strin
     <div className="p-4 md:p-8 lg:p-10 space-y-8">
        <div className="flex justify-between items-center">
         <Breadcrumbs items={breadcrumbItems} />
-        <Link href="/dashboard/contributors" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground">
+        <Link href="/dashboard/settings" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground">
             <Button variant="outline" size="sm">
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to Contributors
+                Back to Settings
             </Button>
         </Link>
       </div>
@@ -163,3 +163,5 @@ export default function ContributorDetailsPage({ params }: { params: { id: strin
     </div>
   );
 }
+
+    

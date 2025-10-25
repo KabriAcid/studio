@@ -4,7 +4,7 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { PlusCircle, Pencil, Trash2 } from "lucide-react";
+import { PlusCircle, Pencil, Trash2, Eye } from "lucide-react";
 import { useState } from "react";
 import {
   beneficiaryCategories as initialBeneficiaryCategories,
@@ -28,6 +28,9 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import Link from "next/link";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import Image from "next/image";
 
 export default function SettingsPage() {
   const [beneficiaryCategories, setBeneficiaryCategories] = useState<Category[]>(initialBeneficiaryCategories);
@@ -254,25 +257,60 @@ export default function SettingsPage() {
                   </Button>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-2">
-                    {contributors.map(contributor => (
-                      <div key={contributor.id} className="flex items-center justify-between rounded-lg border p-3">
-                        <div className="font-medium">{contributor.firstName} {contributor.lastName}</div>
-                        <div className="flex items-center gap-2">
-                          <Button variant="ghost" size="icon" onClick={() => handleEditContributor(contributor)}>
-                            <Pencil className="h-4 w-4" />
-                            <span className="sr-only">Edit</span>
-                          </Button>
-                          <AlertDialogTrigger asChild>
-                            <Button variant="ghost" size="icon" onClick={() => setContributorToDelete(contributor.id)}>
-                              <Trash2 className="h-4 w-4 text-destructive" />
-                              <span className="sr-only">Delete</span>
-                            </Button>
-                          </AlertDialogTrigger>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                    <Table>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead>Name</TableHead>
+                                <TableHead>Category</TableHead>
+                                <TableHead>Status</TableHead>
+                                <TableHead className="text-right">Actions</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                        {contributors.map(contributor => (
+                            <TableRow key={contributor.id}>
+                                <TableCell>
+                                    <div className="flex items-center gap-3">
+                                        <Image
+                                            src={contributor.avatar}
+                                            width={40}
+                                            height={40}
+                                            alt={`${contributor.firstName} ${contributor.lastName}`}
+                                            className="rounded-full"
+                                            data-ai-hint="person face"
+                                        />
+                                        <div>
+                                            <div className="font-bold">{contributor.firstName} {contributor.lastName}</div>
+                                            <div className="text-sm text-muted-foreground">{contributor.email}</div>
+                                        </div>
+                                    </div>
+                                </TableCell>
+                                <TableCell>{contributor.category}</TableCell>
+                                <TableCell>{contributor.status}</TableCell>
+                                <TableCell>
+                                    <div className="flex items-center justify-end gap-2">
+                                        <Button variant="ghost" size="icon" onClick={() => handleEditContributor(contributor)}>
+                                            <Pencil className="h-4 w-4" />
+                                            <span className="sr-only">Edit</span>
+                                        </Button>
+                                        <Link href={`/dashboard/contributors/${contributor.id}`}>
+                                            <Button variant="ghost" size="icon">
+                                                <Eye className="h-4 w-4" />
+                                                <span className="sr-only">View Details</span>
+                                            </Button>
+                                        </Link>
+                                         <AlertDialogTrigger asChild>
+                                            <Button variant="ghost" size="icon" onClick={() => setContributorToDelete(contributor.id)}>
+                                            <Trash2 className="h-4 w-4 text-destructive" />
+                                            <span className="sr-only">Delete</span>
+                                            </Button>
+                                        </AlertDialogTrigger>
+                                    </div>
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                        </TableBody>
+                    </Table>
                 </CardContent>
               </Card>
               <AlertDialogContent>
@@ -293,3 +331,5 @@ export default function SettingsPage() {
     </div>
   );
 }
+
+    
