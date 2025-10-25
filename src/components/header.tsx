@@ -23,7 +23,7 @@ export function Header() {
   
   return (
     <header className="flex h-16 items-center gap-4 border-b bg-card px-4 md:px-6 sticky top-0 z-30">
-      <div className="md:hidden">
+      <div className="hidden md:block">
         <SidebarTrigger />
       </div>
       <div className="flex w-full items-center justify-end gap-4">

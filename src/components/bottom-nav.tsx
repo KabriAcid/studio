@@ -32,7 +32,7 @@ export function BottomNav() {
               )}
             >
               <link.icon className="h-5 w-5" />
-              <span className="truncate">{link.label}</span>
+              <span className="truncate sm:hidden">{link.label}</span>
             </Link>
           );
         })}
