@@ -21,22 +21,39 @@ import {
   DialogFooter,
   DialogClose,
 } from "@/components/ui/dialog";
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { loginSchema } from '@/lib/validation';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [resetEmail, setResetEmail] = useState('');
   const [isForgotModalOpen, setIsForgotModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const { login } = useAuth();
   const { toast } = useToast();
+  
+  const form = useForm<z.infer<typeof loginSchema>>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleLogin = async (values: z.infer<typeof loginSchema>) => {
     setIsLoading(true);
     try {
-      await login(email, password);
+      await login(values.email, values.password);
       router.push('/dashboard');
     } catch (error) {
       toast({
@@ -44,14 +61,12 @@ export default function LoginPage() {
         title: 'Login Failed',
         description: (error as Error).message,
       });
-      setIsLoading(false); // Only stop loading on error
-    } 
-    // No need to set isLoading to false on success, as the page will redirect.
+      setIsLoading(false);
+    }
   };
   
   const handlePasswordReset = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically call an API to send a reset link
     console.log('Password reset requested for:', resetEmail);
     toast({
       title: 'Password Reset',
@@ -74,79 +89,93 @@ export default function LoginPage() {
           <CardDescription>Enter your credentials to access your account.</CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleLogin} className="space-y-6">
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="admin@example.com"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                disabled={isLoading}
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(handleLogin)} className="space-y-6">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="email"
+                        placeholder="admin@example.com"
+                        {...field}
+                        disabled={isLoading}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-            </div>
-            <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                    <Label htmlFor="password">Password</Label>
-                    <Dialog open={isForgotModalOpen} onOpenChange={setIsForgotModalOpen}>
-                        <DialogTrigger asChild>
-                            <button
-                                type="button"
-                                className="text-sm font-medium text-primary hover:underline focus:outline-none"
-                            >
-                                Forgot password?
-                            </button>
-                        </DialogTrigger>
-                        <DialogContent className="sm:max-w-[425px]">
-                            <form onSubmit={handlePasswordReset}>
-                                <DialogHeader>
-                                    <DialogTitle>Reset Password</DialogTitle>
-                                    <DialogDescription>
-                                    Enter your email address below and we'll send you a link to reset your password.
-                                    </DialogDescription>
-                                </DialogHeader>
-                                <div className="grid gap-4 py-6">
-                                    <div className="grid grid-cols-4 items-center gap-4">
-                                        <Label htmlFor="reset-email" className="text-right">
-                                            Email
-                                        </Label>
-                                        <Input
-                                            id="reset-email"
-                                            type="email"
-                                            value={resetEmail}
-                                            onChange={(e) => setResetEmail(e.target.value)}
-                                            className="col-span-3"
-                                            placeholder="you@example.com"
-                                            required
-                                        />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                     <div className="flex items-center justify-between">
+                        <FormLabel>Password</FormLabel>
+                        <Dialog open={isForgotModalOpen} onOpenChange={setIsForgotModalOpen}>
+                            <DialogTrigger asChild>
+                                <button
+                                    type="button"
+                                    className="text-sm font-medium text-primary hover:underline focus:outline-none"
+                                >
+                                    Forgot password?
+                                </button>
+                            </DialogTrigger>
+                            <DialogContent className="sm:max-w-[425px]">
+                                <form onSubmit={handlePasswordReset}>
+                                    <DialogHeader>
+                                        <DialogTitle>Reset Password</DialogTitle>
+                                        <DialogDescription>
+                                        Enter your email address below and we'll send you a link to reset your password.
+                                        </DialogDescription>
+                                    </DialogHeader>
+                                    <div className="grid gap-4 py-6">
+                                        <div className="grid grid-cols-4 items-center gap-4">
+                                            <Label htmlFor="reset-email" className="text-right">
+                                                Email
+                                            </Label>
+                                            <Input
+                                                id="reset-email"
+                                                type="email"
+                                                value={resetEmail}
+                                                onChange={(e) => setResetEmail(e.target.value)}
+                                                className="col-span-3"
+                                                placeholder="you@example.com"
+                                                required
+                                            />
+                                        </div>
                                     </div>
-                                </div>
-                                <DialogFooter>
-                                    <DialogClose asChild>
-                                        <Button type="button" variant="outline">Cancel</Button>
-                                    </DialogClose>
-                                    <Button type="submit">Send Reset Link</Button>
-                                </DialogFooter>
-                            </form>
-                        </DialogContent>
-                    </Dialog>
-                </div>
-              <Input
-                id="password"
-                type="password"
-                placeholder="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                disabled={isLoading}
+                                    <DialogFooter>
+                                        <DialogClose asChild>
+                                            <Button type="button" variant="outline">Cancel</Button>
+                                        </DialogClose>
+                                        <Button type="submit">Send Reset Link</Button>
+                                    </DialogFooter>
+                                </form>
+                            </DialogContent>
+                        </Dialog>
+                    </div>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder="password"
+                        {...field}
+                        disabled={isLoading}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
               />
-            </div>
-            <Button type="submit" className="w-full" disabled={isLoading}>
-              Sign In
-            </Button>
-          </form>
+              <Button type="submit" className="w-full" disabled={isLoading}>
+                Sign In
+              </Button>
+            </form>
+          </Form>
         </CardContent>
       </Card>
     </div>
