@@ -90,7 +90,7 @@ export default function BeneficiariesPage() {
                     New Beneficiary
                 </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-md">
+            <DialogContent>
                 <DialogHeader>
                     <DialogTitle>{selectedBeneficiary ? 'Edit Beneficiary' : 'New Beneficiary'}</DialogTitle>
                 </DialogHeader>
@@ -140,8 +140,8 @@ export default function BeneficiariesPage() {
                   <TableHead>Name</TableHead>
                   <TableHead>Category</TableHead>
                   <TableHead>State</TableHead>
-                  <TableHead>LGA</TableHead>
                   <TableHead>Class</TableHead>
+                  <TableHead>Payment Type</TableHead>
                   <TableHead>Enrollment Status</TableHead>
                   <TableHead className="text-right">Total Payments</TableHead>
                   <TableHead className="text-right">Actions</TableHead>
@@ -170,8 +170,8 @@ export default function BeneficiariesPage() {
                       <Badge variant={beneficiary.category === 'Orphan' ? 'default' : 'secondary'}>{beneficiary.category}</Badge>
                     </TableCell>
                     <TableCell>{beneficiary.state}</TableCell>
-                    <TableCell>{beneficiary.lga}</TableCell>
                     <TableCell>{beneficiary.class}</TableCell>
+                    <TableCell>{beneficiary.paymentType}</TableCell>
                     <TableCell>
                       <Badge variant={beneficiary.enrollmentStatus === 'Active' ? 'default' : 'secondary'} className={cn(
                           beneficiary.enrollmentStatus === 'Active' && 'bg-green-100 text-green-800 border-green-200',
@@ -183,7 +183,7 @@ export default function BeneficiariesPage() {
                     </TableCell>
                     <TableCell className="text-right">₦{beneficiary.totalPayments.toLocaleString()}</TableCell>
                     <TableCell>
-                      <div className="flex items-center justify-end gap-2">
+                      <div className="flex items-center justify-end gap-1">
                           <Button variant="ghost" size="icon" onClick={() => handleEditBeneficiary(beneficiary)}>
                               <Pencil className="h-4 w-4" />
                               <span className="sr-only">Edit</span>
