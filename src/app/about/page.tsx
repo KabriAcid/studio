@@ -35,7 +35,7 @@ export default function AboutPage() {
       <main className="flex-1">
         {/* Hero Section */}
         <motion.section 
-            className="relative h-[50vh] min-h-[400px] flex items-center justify-center text-center text-white bg-gradient-to-r from-primary to-purple-600"
+            className="relative h-[50vh] min-h-[400px] flex items-center justify-center text-center text-white"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
