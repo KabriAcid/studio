@@ -163,6 +163,7 @@ export function BeneficiaryForm({ beneficiary, onSubmit }: BeneficiaryFormProps)
                       <SelectItem value="Book Grant">Book Grant</SelectItem>
                       <SelectItem value="Transport">Transport</SelectItem>
                       <SelectItem value="Distress">Distress</SelectItem>
+                      <SelectItem value="Upkeep">Upkeep</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />

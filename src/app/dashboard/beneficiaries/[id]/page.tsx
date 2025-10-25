@@ -85,7 +85,7 @@ export default function BeneficiaryDetailsPage({ params }: { params: { id: strin
                         <p className="text-xs text-muted-foreground">Total payments received</p>
                         <div className="mt-4 space-y-2 text-sm">
                             <div className="flex justify-between"><span>Last Payment:</span> <span>{new Date(beneficiary.paymentDate).toLocaleDateString()}</span></div>
-                            <div className="flex justify-between"><span>Avg. Payment:</span> <span>₦{(beneficiary.totalPayments / 5).toLocaleString()}</span></div>
+                            <div className="flex justify-between"><span>Payment Type:</span> <Badge variant="secondary">{beneficiary.paymentType}</Badge></div>
                         </div>
                     </CardContent>
                 </Card>
