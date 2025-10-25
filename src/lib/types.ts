@@ -20,7 +20,6 @@ export type Beneficiary = {
 export type Contributor = {
   id: string;
   firstName: string;
-
   lastName: string;
   avatar: string;
   email: string;

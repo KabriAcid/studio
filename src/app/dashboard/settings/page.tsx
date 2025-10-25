@@ -144,7 +144,7 @@ export default function SettingsPage() {
   return (
     <div className="p-4 md:p-8 lg:p-10 space-y-8">
       <Dialog open={isCategoryModalOpen} onOpenChange={setIsCategoryModalOpen}>
-        <DialogContent className="sm:max-w-md">
+        <DialogContent>
           <DialogHeader>
             <DialogTitle>{selectedCategory?.category.id ? 'Edit' : 'New'} {selectedCategory?.type === 'beneficiary' ? 'Beneficiary' : 'Contributor'} Category</DialogTitle>
           </DialogHeader>
@@ -152,7 +152,7 @@ export default function SettingsPage() {
         </DialogContent>
       </Dialog>
       <Dialog open={isContributorModalOpen} onOpenChange={setIsContributorModalOpen}>
-        <DialogContent className="sm:max-w-lg">
+        <DialogContent>
           <DialogHeader>
             <DialogTitle>{selectedContributor ? 'Edit Contributor' : 'New Contributor'}</DialogTitle>
           </DialogHeader>
