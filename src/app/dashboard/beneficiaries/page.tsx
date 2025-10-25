@@ -139,6 +139,7 @@ export default function BeneficiariesPage() {
                 <TableRow>
                   <TableHead>Name</TableHead>
                   <TableHead>State</TableHead>
+                  <TableHead>LGA</TableHead>
                   <TableHead>Class</TableHead>
                   <TableHead>Status</TableHead>
                   <TableHead className="text-right">Total Payments</TableHead>
@@ -165,6 +166,7 @@ export default function BeneficiariesPage() {
                       </div>
                     </TableCell>
                     <TableCell>{beneficiary.state}</TableCell>
+                    <TableCell>{beneficiary.lga}</TableCell>
                     <TableCell>{beneficiary.class}</TableCell>
                     <TableCell>
                       <Badge variant={beneficiary.status === 'Active' ? 'default' : 'secondary'} className={cn(
