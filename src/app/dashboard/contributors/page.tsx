@@ -143,7 +143,7 @@ export default function ContributionsPage() {
                                      <TableCell>
                                         <Badge variant="secondary">{contribution.type}</Badge>
                                     </TableCell>
-                                    <TableCell className="text-right">${contribution.amount.toLocaleString()}</TableCell>
+                                    <TableCell className="text-right">₦{contribution.amount.toLocaleString()}</TableCell>
                                 </TableRow>
                                 )
                             })}

@@ -76,7 +76,7 @@ export function LogContributionForm({ contributors, onSubmit }: LogContributionF
               <FormControl>
                 <div className="relative">
                     <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                        <span className="text-muted-foreground sm:text-sm">$</span>
+                        <span className="text-muted-foreground sm:text-sm">₦</span>
                     </div>
                     <Input type="number" placeholder="0.00" className="pl-7" {...field} />
                 </div>

@@ -177,7 +177,7 @@ export default function BeneficiariesPage() {
                         {beneficiary.status}
                       </Badge>
                     </TableCell>
-                    <TableCell className="text-right">${beneficiary.totalPayments.toLocaleString()}</TableCell>
+                    <TableCell className="text-right">₦{beneficiary.totalPayments.toLocaleString()}</TableCell>
                     <TableCell>
                       <div className="flex items-center justify-end gap-2">
                           <Button variant="ghost" size="icon" onClick={() => handleEditBeneficiary(beneficiary)}>

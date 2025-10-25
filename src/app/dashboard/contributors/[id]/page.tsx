@@ -24,9 +24,9 @@ export default function ContributorDetailsPage({ params }: { params: { id: strin
 
   // Placeholder for contribution history
   const contributionHistory = [
-    { id: 1, date: '2023-04-15', amount: 2000, type: 'Donation' },
-    { id: 2, date: '2023-01-15', amount: 1500, type: 'Grant' },
-    { id: 3, date: '2022-10-15', amount: 1500, type: 'Grant' },
+    { id: 1, date: '2023-04-15', amount: 1000000, type: 'Donation' },
+    { id: 2, date: '2023-01-15', amount: 750000, type: 'Grant' },
+    { id: 3, date: '2022-10-15', amount: 750000, type: 'Grant' },
   ];
 
   const breadcrumbItems = [
@@ -79,11 +79,11 @@ export default function ContributorDetailsPage({ params }: { params: { id: strin
                         <DollarSign className="h-5 w-5 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-3xl font-bold">${contributor.totalContribution.toLocaleString()}</div>
+                        <div className="text-3xl font-bold">₦{contributor.totalContribution.toLocaleString()}</div>
                         <p className="text-xs text-muted-foreground">Total contributions</p>
                         <div className="mt-4 space-y-2 text-sm">
                             <div className="flex justify-between"><span>Last Contribution:</span> <span>{new Date(contributor.lastContributionDate).toLocaleDateString()}</span></div>
-                            <div className="flex justify-between"><span>Avg. Contribution:</span> <span>$1,667</span></div>
+                            <div className="flex justify-between"><span>Avg. Contribution:</span> <span>₦833,333</span></div>
                         </div>
                     </CardContent>
                 </Card>
@@ -142,7 +142,7 @@ export default function ContributorDetailsPage({ params }: { params: { id: strin
                                 {contributionHistory.map(c => (
                                 <TableRow key={c.id}>
                                     <TableCell>{c.date}</TableCell>
-                                    <TableCell className="text-right">${c.amount.toLocaleString()}</TableCell>
+                                    <TableCell className="text-right">₦{c.amount.toLocaleString()}</TableCell>
                                     <TableCell>
                                         <Badge variant="secondary">{c.type}</Badge>
                                     </TableCell>
@@ -163,5 +163,3 @@ export default function ContributorDetailsPage({ params }: { params: { id: strin
     </div>
   );
 }
-
-    

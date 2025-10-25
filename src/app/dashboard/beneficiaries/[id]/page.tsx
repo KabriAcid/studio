@@ -24,11 +24,11 @@ export default function BeneficiaryDetailsPage({ params }: { params: { id: strin
 
   // Placeholder for payment history
   const paymentHistory = [
-    { id: 1, date: '2023-05-20', amount: 500, status: 'Completed', type: beneficiary.paymentType },
-    { id: 2, date: '2023-04-20', amount: 500, status: 'Completed', type: 'Termly Fees' },
-    { id: 3, date: '2023-03-20', amount: 500, status: 'Completed', type: 'Termly Fees' },
-    { id: 4, date: '2023-02-20', amount: 500, status: 'Completed', type: 'Termly Fees' },
-    { id: 5, date: '2023-01-20', amount: 500, status: 'Completed', type: 'Registration' },
+    { id: 1, date: '2023-05-20', amount: 250000, status: 'Completed', type: beneficiary.paymentType },
+    { id: 2, date: '2023-04-20', amount: 250000, status: 'Completed', type: 'Termly Fees' },
+    { id: 3, date: '2023-03-20', amount: 250000, status: 'Completed', type: 'Termly Fees' },
+    { id: 4, date: '2023-02-20', amount: 250000, status: 'Completed', type: 'Termly Fees' },
+    { id: 5, date: '2023-01-20', amount: 100000, status: 'Completed', type: 'Registration' },
   ];
   
   const breadcrumbItems = [
@@ -81,11 +81,11 @@ export default function BeneficiaryDetailsPage({ params }: { params: { id: strin
                         <DollarSign className="h-5 w-5 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-3xl font-bold">${beneficiary.totalPayments.toLocaleString()}</div>
+                        <div className="text-3xl font-bold">₦{beneficiary.totalPayments.toLocaleString()}</div>
                         <p className="text-xs text-muted-foreground">Total payments received</p>
                         <div className="mt-4 space-y-2 text-sm">
                             <div className="flex justify-between"><span>Last Payment:</span> <span>{new Date(beneficiary.paymentDate).toLocaleDateString()}</span></div>
-                            <div className="flex justify-between"><span>Avg. Payment:</span> <span>${(beneficiary.totalPayments / 5).toLocaleString()}</span></div>
+                            <div className="flex justify-between"><span>Avg. Payment:</span> <span>₦{(beneficiary.totalPayments / 5).toLocaleString()}</span></div>
                         </div>
                     </CardContent>
                 </Card>
@@ -156,7 +156,7 @@ export default function BeneficiaryDetailsPage({ params }: { params: { id: strin
                                      <TableCell>
                                         <Badge variant="secondary">{p.type}</Badge>
                                     </TableCell>
-                                    <TableCell className="text-right">${p.amount.toLocaleString()}</TableCell>
+                                    <TableCell className="text-right">₦{p.amount.toLocaleString()}</TableCell>
                                     <TableCell>
                                         <Badge variant="default" className="bg-green-100 text-green-800 border-green-200">{p.status}</Badge>
                                     </TableCell>

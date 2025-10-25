@@ -98,7 +98,7 @@ export default function DashboardPage() {
                     <BarChart data={monthlyFinancials}>
                         <CartesianGrid strokeDasharray="3 3" vertical={false} />
                         <XAxis dataKey="month" stroke="#888888" fontSize={14} tickLine={false} axisLine={false} />
-                        <YAxis stroke="#888888" fontSize={14} tickLine={false} axisLine={false} tickFormatter={(value) => `$${value / 1000}k`} />
+                        <YAxis stroke="#888888" fontSize={14} tickLine={false} axisLine={false} tickFormatter={(value) => `₦${value / 1000}k`} />
                         <Tooltip
                         contentStyle={{
                             backgroundColor: 'hsl(var(--card))',
@@ -163,7 +163,7 @@ export default function DashboardPage() {
                                     <p className="font-semibold truncate">{beneficiary.firstName} {beneficiary.lastName}</p>
                                     <p className="text-sm text-muted-foreground truncate">{beneficiary.email}</p>
                                 </div>
-                                <div className="text-sm text-right text-muted-foreground">${beneficiary.totalPayments.toLocaleString()}</div>
+                                <div className="text-sm text-right text-muted-foreground">₦{beneficiary.totalPayments.toLocaleString()}</div>
                             </div>
                         ))}
                     </div>

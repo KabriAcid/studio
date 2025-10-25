@@ -116,9 +116,9 @@ export default function ReportsPage() {
                         </div>
                     ) : (
                         <div className="grid gap-6 md:grid-cols-3">
-                            <KpiCard title="Total Income" value="$45,231" change="+20.1%" changeType="increase" icon={<DollarSign/>} />
-                            <KpiCard title="Total Expenses" value="$28,750" change="+18.3%" changeType="increase" icon={<DollarSign />} />
-                            <KpiCard title="Net Balance" value="$16,481" change="+25.2%" changeType="increase" icon={<DollarSign />} />
+                            <KpiCard title="Total Income" value="₦22,615,500" change="+20.1%" changeType="increase" icon={<DollarSign/>} />
+                            <KpiCard title="Total Expenses" value="₦14,375,200" change="+18.3%" changeType="increase" icon={<DollarSign />} />
+                            <KpiCard title="Net Balance" value="₦8,240,300" change="+25.2%" changeType="increase" icon={<DollarSign />} />
                         </div>
                     )}
                      <Card className="shadow-[0_4px_12px_rgba(0,0,0,0.04),_0_1px_4px_rgba(0,0,0,0.06)] border-0">
@@ -135,7 +135,7 @@ export default function ReportsPage() {
                                     <BarChart data={monthlyFinancials}>
                                         <CartesianGrid strokeDasharray="3 3" vertical={false} />
                                         <XAxis dataKey="month" stroke="#888888" fontSize={14} tickLine={false} axisLine={false} />
-                                        <YAxis stroke="#888888" fontSize={14} tickLine={false} axisLine={false} tickFormatter={(value) => `$${value / 1000}k`} />
+                                        <YAxis stroke="#888888" fontSize={14} tickLine={false} axisLine={false} tickFormatter={(value) => `₦${value / 1000000}m`} />
                                         <Tooltip
                                         contentStyle={{
                                             backgroundColor: 'hsl(var(--card))',
@@ -180,7 +180,7 @@ export default function ReportsPage() {
                                                 <TableCell className="font-medium">{beneficiary.firstName} {beneficiary.lastName}</TableCell>
                                                 <TableCell>{beneficiary.category}</TableCell>
                                                 <TableCell>{beneficiary.status}</TableCell>
-                                                <TableCell className="text-right">${beneficiary.totalPayments.toLocaleString()}</TableCell>
+                                                <TableCell className="text-right">₦{beneficiary.totalPayments.toLocaleString()}</TableCell>
                                             </TableRow>
                                         ))}
                                     </TableBody>
@@ -214,7 +214,7 @@ export default function ReportsPage() {
                                                 <TableCell className="font-medium">{contributor.firstName} {contributor.lastName}</TableCell>
                                                 <TableCell>{contributor.category}</TableCell>
                                                 <TableCell>{contributor.status}</TableCell>
-                                                <TableCell className="text-right">${contributor.totalContribution.toLocaleString()}</TableCell>
+                                                <TableCell className="text-right">₦{contributor.totalContribution.toLocaleString()}</TableCell>
                                             </TableRow>
                                         ))}
                                     </TableBody>
