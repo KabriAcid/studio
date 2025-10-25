@@ -84,7 +84,7 @@ export default function LandingPage() {
               <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
                 <Link href="/donate">Donate Now</Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-primary">
+              <Button asChild size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-black">
                 <Link href="/impact">Our Impact</Link>
               </Button>
             </div>
