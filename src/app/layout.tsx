@@ -1,7 +1,8 @@
 import type {Metadata} from 'next';
 import { Toaster } from "@/components/ui/toaster"
 import './globals.css';
-import { AuthProvider } from '@/app/auth-provider';
+import { AuthProvider } from '@/hooks/use-auth';
+import { AppLayout } from './app-layout';
 
 export const metadata: Metadata = {
   title: 'EduAid HQ',
@@ -22,7 +23,9 @@ export default function RootLayout({
       </head>
       <body className="font-body antialiased">
         <AuthProvider>
-          {children}
+            <AppLayout>
+              {children}
+            </AppLayout>
         </AuthProvider>
         <Toaster />
       </body>
