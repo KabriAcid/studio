@@ -33,7 +33,7 @@ export default function LandingPage() {
                 <Link href="/dashboard/contributors">Donate Now</Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-primary">
-                <Link href="/dashboard/beneficiaries">Our Impact</Link>
+                <Link href="/impact">Our Impact</Link>
               </Button>
             </div>
           </div>
