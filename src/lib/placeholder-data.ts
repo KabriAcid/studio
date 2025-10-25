@@ -204,7 +204,7 @@ export const blogPosts: BlogPost[] = [
     excerpt: 'Learn how corporate partnerships are crucial in creating sustainable educational opportunities for the next generation.',
     author: 'Chinedu Okoro',
     date: 'October 15, 2023',
-    imageUrl: 'https://images.unsplash.com/photo-1571260899104-606c11d74d29?q=80&w=2070&auto=format&fit=crop',
+    imageUrl: 'https://images.unsplash.com/photo-1543269664-56d93c1b41a6?q=80&w=2070&auto=format&fit=crop',
     imageHint: 'business handshake',
     content: `
 <p>While individual donations are the lifeblood of many non-profits, corporate sponsorships provide the scale and stability needed to create long-term, systemic change. At EduAid HQ, our corporate partners are more than just donors; they are strategic allies in our mission to build a more educated and prosperous Nigeria.</p>
