@@ -18,6 +18,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
+import { BottomNav } from '@/components/bottom-nav';
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   const { isAuthenticated, loading } = useAuth();
@@ -61,9 +62,10 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
       </Sidebar>
       <SidebarInset className="flex flex-col">
         <Header />
-        <main className="flex-1 overflow-y-auto bg-background">
+        <main className="flex-1 overflow-y-auto bg-background pb-16 md:pb-0">
           {children}
         </main>
+        <BottomNav />
       </SidebarInset>
     </SidebarProvider>
   );
