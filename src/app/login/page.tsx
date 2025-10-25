@@ -11,10 +11,22 @@ import { Label } from '@/components/ui/label';
 import { Sparkles } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { LoadingOverlay } from '@/components/ui/loading-overlay';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogFooter,
+  DialogClose,
+} from "@/components/ui/dialog";
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [resetEmail, setResetEmail] = useState('');
+  const [isForgotModalOpen, setIsForgotModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const { login } = useAuth();
@@ -35,6 +47,18 @@ export default function LoginPage() {
       setIsLoading(false); // Only stop loading on error
     } 
     // No need to set isLoading to false on success, as the page will redirect.
+  };
+  
+  const handlePasswordReset = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Here you would typically call an API to send a reset link
+    console.log('Password reset requested for:', resetEmail);
+    toast({
+      title: 'Password Reset',
+      description: `If an account exists for ${resetEmail}, a reset link has been sent.`,
+    });
+    setIsForgotModalOpen(false);
+    setResetEmail('');
   };
 
   return (
@@ -64,7 +88,51 @@ export default function LoginPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+                <div className="flex items-center justify-between">
+                    <Label htmlFor="password">Password</Label>
+                    <Dialog open={isForgotModalOpen} onOpenChange={setIsForgotModalOpen}>
+                        <DialogTrigger asChild>
+                            <button
+                                type="button"
+                                className="text-sm font-medium text-primary hover:underline focus:outline-none"
+                            >
+                                Forgot password?
+                            </button>
+                        </DialogTrigger>
+                        <DialogContent className="sm:max-w-[425px]">
+                            <form onSubmit={handlePasswordReset}>
+                                <DialogHeader>
+                                    <DialogTitle>Reset Password</DialogTitle>
+                                    <DialogDescription>
+                                    Enter your email address below and we'll send you a link to reset your password.
+                                    </DialogDescription>
+                                </DialogHeader>
+                                <div className="grid gap-4 py-6">
+                                    <div className="grid grid-cols-4 items-center gap-4">
+                                        <Label htmlFor="reset-email" className="text-right">
+                                            Email
+                                        </Label>
+                                        <Input
+                                            id="reset-email"
+                                            type="email"
+                                            value={resetEmail}
+                                            onChange={(e) => setResetEmail(e.target.value)}
+                                            className="col-span-3"
+                                            placeholder="you@example.com"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                                <DialogFooter>
+                                    <DialogClose asChild>
+                                        <Button type="button" variant="outline">Cancel</Button>
+                                    </DialogClose>
+                                    <Button type="submit">Send Reset Link</Button>
+                                </DialogFooter>
+                            </form>
+                        </DialogContent>
+                    </Dialog>
+                </div>
               <Input
                 id="password"
                 type="password"
