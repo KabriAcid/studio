@@ -9,12 +9,14 @@ import { useState } from "react";
 import {
   beneficiaryCategories as initialBeneficiaryCategories,
   contributorCategories as initialContributorCategories,
+  contributors as initialContributors,
   userProfile,
 } from '@/lib/placeholder-data';
-import type { Category, UserProfile } from '@/lib/types';
+import type { Category, Contributor, UserProfile } from '@/lib/types';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { CategoryForm } from "@/components/category-form";
 import { ProfileForm } from "@/components/profile-form";
+import { ContributorForm } from "@/components/contributor-form";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -30,12 +32,15 @@ import {
 export default function SettingsPage() {
   const [beneficiaryCategories, setBeneficiaryCategories] = useState<Category[]>(initialBeneficiaryCategories);
   const [contributorCategories, setContributorCategories] = useState<Category[]>(initialContributorCategories);
+  const [contributors, setContributors] = useState<Contributor[]>(initialContributors);
   const [profile, setProfile] = useState<UserProfile>(userProfile);
 
   const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
-  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
+  const [isContributorModalOpen, setIsContributorModalOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<{category: Category, type: 'beneficiary' | 'contributor'} | undefined>(undefined);
+  const [selectedContributor, setSelectedContributor] = useState<Contributor | undefined>(undefined);
   const [categoryToDelete, setCategoryToDelete] = useState<{id: string, type: 'beneficiary' | 'contributor'} | null>(null);
+  const [contributorToDelete, setContributorToDelete] = useState<string | null>(null);
 
   const handleNewCategory = (type: 'beneficiary' | 'contributor') => {
     setSelectedCategory({ category: { id: '', name: '' }, type });
@@ -81,10 +86,40 @@ export default function SettingsPage() {
     }
   };
 
-  const handleProfileFormSubmit = (values: UserProfile) => {
-    setProfile(values);
-    setIsProfileModalOpen(false);
+  const handleNewContributor = () => {
+    setSelectedContributor(undefined);
+    setIsContributorModalOpen(true);
   };
+
+  const handleEditContributor = (contributor: Contributor) => {
+    setSelectedContributor(contributor);
+    setIsContributorModalOpen(true);
+  };
+
+  const handleContributorFormSubmit = (values: any) => {
+    if (selectedContributor) { // Editing
+      setContributors(contributors.map(c => c.id === selectedContributor.id ? { ...selectedContributor, ...values } : c));
+    } else { // Adding new
+      const newContributor: Contributor = {
+        ...values,
+        id: `contrib-${Date.now()}`,
+        avatar: "https://picsum.photos/seed/13/40/40",
+        totalContribution: 0,
+        lastContributionDate: new Date().toISOString(),
+      };
+      setContributors([...contributors, newContributor]);
+    }
+    setIsContributorModalOpen(false);
+    setSelectedContributor(undefined);
+  };
+
+  const handleDeleteContributor = () => {
+    if (contributorToDelete) {
+        setContributors(contributors.filter(c => c.id !== contributorToDelete));
+        setContributorToDelete(null);
+    }
+  };
+
 
   return (
     <div className="p-4 md:p-8 lg:p-10 space-y-8">
@@ -96,12 +131,12 @@ export default function SettingsPage() {
           {selectedCategory && <CategoryForm category={selectedCategory.category} onSubmit={handleCategoryFormSubmit} />}
         </DialogContent>
       </Dialog>
-      <Dialog open={isProfileModalOpen} onOpenChange={setIsProfileModalOpen}>
-        <DialogContent className="sm:max-w-[425px]">
-            <DialogHeader>
-                <DialogTitle>Edit Profile</DialogTitle>
-            </DialogHeader>
-            <ProfileForm profile={profile} onSubmit={handleProfileFormSubmit} />
+      <Dialog open={isContributorModalOpen} onOpenChange={setIsContributorModalOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>{selectedContributor ? 'Edit Contributor' : 'New Contributor'}</DialogTitle>
+          </DialogHeader>
+          <ContributorForm contributor={selectedContributor} onSubmit={handleContributorFormSubmit} />
         </DialogContent>
       </Dialog>
       
@@ -113,7 +148,7 @@ export default function SettingsPage() {
       <Tabs defaultValue="categories" className="w-full">
         <TabsList className="grid w-full max-w-md grid-cols-2">
           <TabsTrigger value="categories">Categories</TabsTrigger>
-          <TabsTrigger value="account">Account</TabsTrigger>
+          <TabsTrigger value="contributors">Contributors</TabsTrigger>
         </TabsList>
         <TabsContent value="categories">
           <AlertDialog onOpenChange={(open) => !open && setCategoryToDelete(null)}>
@@ -203,31 +238,56 @@ export default function SettingsPage() {
             </AlertDialogContent>
           </AlertDialog>
         </TabsContent>
-        <TabsContent value="account">
-          <Card className="shadow-[0_4px_12px_rgba(0,0,0,0.04),_0_1px_4px_rgba(0,0,0,0.06)] border-0">
-            <CardHeader className="flex flex-row items-center justify-between">
-              <div>
-                <CardTitle className="text-2xl font-headline">Account Settings</CardTitle>
-                <CardDescription className="text-base">
-                  Manage your personal profile and notification settings.
-                </CardDescription>
-              </div>
-               <Button size="sm" onClick={() => setIsProfileModalOpen(true)}>
-                  <Pencil className="mr-2 h-4 w-4" />
-                  Edit Profile
-              </Button>
-            </CardHeader>
-            <CardContent className="space-y-4">
-                <div>
-                    <h3 className="font-semibold">Full Name</h3>
-                    <p className="text-muted-foreground">{profile.name}</p>
-                </div>
-                <div>
-                    <h3 className="font-semibold">Email Address</h3>
-                    <p className="text-muted-foreground">{profile.email}</p>
-                </div>
-            </CardContent>
-          </Card>
+        <TabsContent value="contributors">
+           <AlertDialog onOpenChange={(open) => !open && setContributorToDelete(null)}>
+              <Card className="shadow-[0_4px_12px_rgba(0,0,0,0.04),_0_1px_4px_rgba(0,0,0,0.06)] border-0">
+                <CardHeader className="flex flex-row items-center justify-between">
+                  <div>
+                    <CardTitle className="text-2xl font-headline">Manage Contributors</CardTitle>
+                    <CardDescription className="text-base">
+                      Add, edit, or remove contributors from your organization.
+                    </CardDescription>
+                  </div>
+                  <Button size="sm" onClick={handleNewContributor}>
+                    <PlusCircle className="mr-2 h-4 w-4" />
+                    Add Contributor
+                  </Button>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-2">
+                    {contributors.map(contributor => (
+                      <div key={contributor.id} className="flex items-center justify-between rounded-lg border p-3">
+                        <div className="font-medium">{contributor.firstName} {contributor.lastName}</div>
+                        <div className="flex items-center gap-2">
+                          <Button variant="ghost" size="icon" onClick={() => handleEditContributor(contributor)}>
+                            <Pencil className="h-4 w-4" />
+                            <span className="sr-only">Edit</span>
+                          </Button>
+                          <AlertDialogTrigger asChild>
+                            <Button variant="ghost" size="icon" onClick={() => setContributorToDelete(contributor.id)}>
+                              <Trash2 className="h-4 w-4 text-destructive" />
+                              <span className="sr-only">Delete</span>
+                            </Button>
+                          </AlertDialogTrigger>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+              <AlertDialogContent>
+                  <AlertDialogHeader>
+                      <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                      <AlertDialogDescription>
+                          This action cannot be undone. This will permanently delete the contributor.
+                      </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction onClick={handleDeleteContributor}>Delete</AlertDialogAction>
+                  </AlertDialogFooter>
+              </AlertDialogContent>
+           </AlertDialog>
         </TabsContent>
       </Tabs>
     </div>
