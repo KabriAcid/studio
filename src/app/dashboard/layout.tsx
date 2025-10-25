@@ -2,6 +2,7 @@
 'use client';
 
 import type { ReactNode } from 'react';
+import { motion } from 'framer-motion';
 import {
   SidebarProvider,
   Sidebar,
@@ -44,6 +45,18 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
     );
   }
 
+  const pageVariants = {
+    initial: { opacity: 0, y: 20 },
+    in: { opacity: 1, y: 0 },
+    out: { opacity: 0, y: -20 },
+  };
+
+  const pageTransition = {
+    type: 'tween',
+    ease: 'anticipate',
+    duration: 0.5,
+  };
+
   return (
     <SidebarProvider>
       <Sidebar>
@@ -63,7 +76,15 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
       <SidebarInset className="flex flex-col">
         <Header />
         <main className="flex-1 overflow-y-auto bg-background pb-16 md:pb-0">
-          {children}
+          <motion.div
+            key={router.asPath}
+            initial="initial"
+            animate="in"
+            variants={pageVariants}
+            transition={pageTransition}
+          >
+            {children}
+          </motion.div>
         </main>
         <BottomNav />
       </SidebarInset>

@@ -1,6 +1,7 @@
 
 'use client'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { motion } from 'framer-motion';
 import { DollarSign, Users, TrendingUp, Handshake, ArrowRight } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { KpiCard } from '@/components/kpi-card';
@@ -21,6 +22,24 @@ export default function DashboardPage() {
     }, 1500);
     return () => clearTimeout(timer);
   }, []);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1
+    }
+  };
   
   return (
     <div className="p-4 md:p-8 lg:p-10 space-y-8">
@@ -30,7 +49,7 @@ export default function DashboardPage() {
       </div>
 
       {isLoading ? (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <motion.div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4" variants={containerVariants} initial="hidden" animate="visible">
           {Array.from({ length: 4 }).map((_, i) => (
             <Card key={i} className="shadow-[0_4px_12px_rgba(0,0,0,0.04),_0_1px_4px_rgba(0,0,0,0.06)] border-0">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -43,18 +62,20 @@ export default function DashboardPage() {
               </CardContent>
             </Card>
           ))}
-        </div>
+        </motion.div>
       ) : (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <motion.div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4" variants={containerVariants} initial="hidden" animate="visible">
           {financialStats.map((stat, index) => (
-            <KpiCard key={stat.title} {...stat} icon={icons[index]} />
+            <motion.div key={stat.title} variants={itemVariants}>
+              <KpiCard {...stat} icon={icons[index]} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       )}
 
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2">
+      <motion.div className="grid grid-cols-1 lg:grid-cols-3 gap-8" variants={containerVariants} initial="hidden" animate="visible">
+        <motion.div className="lg:col-span-2" variants={itemVariants}>
           {isLoading ? (
             <Card className="shadow-[0_4px_12px_rgba(0,0,0,0.04),_0_1px_4px_rgba(0,0,0,0.06)] border-0 h-full">
                 <CardHeader>
@@ -95,8 +116,8 @@ export default function DashboardPage() {
                 </CardContent>
             </Card>
           )}
-        </div>
-        <div>
+        </motion.div>
+        <motion.div variants={itemVariants}>
           {isLoading ? (
              <Card className="shadow-[0_4px_12px_rgba(0,0,0,0.04),_0_1px_4px_rgba(0,0,0,0.06)] border-0 h-full">
                 <CardHeader>
@@ -149,8 +170,8 @@ export default function DashboardPage() {
                 </CardContent>
             </Card>
            )}
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 }
