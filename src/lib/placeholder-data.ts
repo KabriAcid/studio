@@ -1,5 +1,6 @@
 
-import type { Beneficiary, Contributor, Contribution, FinancialStat, MonthlyData, Category, UserProfile } from '@/lib/types';
+
+import type { Beneficiary, Contributor, Contribution, FinancialStat, MonthlyData, Category, UserProfile, HeroSlide } from '@/lib/types';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const getAvatar = (id: string) => PlaceHolderImages.find(img => img.id === id)?.imageUrl || '';
@@ -146,4 +147,11 @@ export const teamMembers = [
     { id: 1, name: 'Dr. Amina Yusuf', role: 'Founder & Executive Director', avatar: getAvatar('avatar-8'), bio: 'Dr. Yusuf founded EduAid HQ with a passion for ensuring every child has access to quality education. Her vision drives our mission.' },
     { id: 2, name: 'Tunde Adekunle', role: 'Head of Operations', avatar: getAvatar('avatar-7'), bio: 'Tunde manages the day-to-day operations, ensuring our programs run smoothly and efficiently to maximize our impact.' },
     { id: 3, name: 'Ngozi Obi', role: 'Partnerships Lead', avatar: getAvatar('avatar-10'), bio: 'Ngozi builds and maintains relationships with our generous corporate and individual partners who make our work possible.' },
+];
+
+export const heroSlides: HeroSlide[] = [
+    { id: 'slide-1', imageUrl: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop', alt: 'Students studying together', imageHint: 'students learning' },
+    { id: 'slide-2', imageUrl: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2070&auto=format&fit=crop', alt: 'Student graduating', imageHint: 'student graduation' },
+    { id: 'slide-3', imageUrl: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop', alt: 'Students in a classroom', imageHint: 'students classroom' },
+    { id: 'slide-4', imageUrl: 'https://images.unsplash.com/photo-1576405828234-a8a932c942b9?q=80&w=2070&auto=format&fit=crop', alt: 'Happy children smiling', imageHint: 'happy children' },
 ];

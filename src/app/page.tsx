@@ -5,22 +5,49 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, BookOpen, Handshake, Target } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from '@/components/ui/carousel';
+import Autoplay from "embla-carousel-autoplay";
+import { heroSlides } from '@/lib/placeholder-data';
+import React from 'react';
 
 export default function LandingPage() {
+    const plugin = React.useRef(
+      Autoplay({ delay: 5000, stopOnInteraction: true })
+    );
+
   return (
     <div className="flex flex-col min-h-screen">
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative h-[60vh] min-h-[500px] flex items-center justify-center text-center text-white bg-gradient-to-r from-primary to-purple-600">
-          <div className="absolute inset-0 bg-black/40"></div>
-          <Image
-            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop"
-            layout="fill"
-            objectFit="cover"
-            alt="Students studying together"
-            className="absolute inset-0 z-[-1] opacity-80"
-            data-ai-hint="students learning"
-          />
+        <section className="relative h-[60vh] min-h-[500px] flex items-center justify-center text-center text-white">
+           <Carousel
+                plugins={[plugin.current]}
+                className="absolute inset-0 w-full h-full"
+                onMouseEnter={plugin.current.stop}
+                onMouseLeave={plugin.current.reset}
+            >
+                <CarouselContent>
+                {heroSlides.map((slide) => (
+                    <CarouselItem key={slide.id}>
+                         <div className="relative h-[60vh] min-h-[500px] w-full">
+                             <Image
+                                src={slide.imageUrl}
+                                layout="fill"
+                                objectFit="cover"
+                                alt={slide.alt}
+                                className="absolute inset-0 z-[-1] brightness-75"
+                                data-ai-hint={slide.imageHint}
+                            />
+                         </div>
+                    </CarouselItem>
+                ))}
+                </CarouselContent>
+            </Carousel>
+         
           <div className="relative z-10 p-4">
             <h1 className="text-5xl md:text-7xl font-bold font-headline tracking-tight">
               Empowering Futures Through Education

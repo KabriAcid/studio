@@ -1,4 +1,5 @@
 
+
 export type Beneficiary = {
   id: string;
   firstName: string;
@@ -19,6 +20,7 @@ export type Beneficiary = {
 export type Contributor = {
   id: string;
   firstName: string;
+
   lastName: string;
   avatar: string;
   email: string;
@@ -66,4 +68,11 @@ export type TeamMember = {
     role: string;
     avatar: string;
     bio: string;
+};
+
+export type HeroSlide = {
+    id: string;
+    alt: string;
+    imageUrl: string;
+    imageHint: string;
 };
