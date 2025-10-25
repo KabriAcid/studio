@@ -11,6 +11,7 @@ import { ArrowLeft, DollarSign, CalendarDays, History, Mail, Phone, FileText } f
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Breadcrumbs } from '@/components/ui/breadcrumbs';
 
 export default function BeneficiaryDetailsPage({ params }: { params: { id: string } }) {
   const beneficiary = beneficiaries.find((b) => b.id === params.id);
@@ -27,15 +28,23 @@ export default function BeneficiaryDetailsPage({ params }: { params: { id: strin
     { id: 4, date: '2023-02-20', amount: 500, status: 'Completed' },
     { id: 5, date: '2023-01-20', amount: 500, status: 'Completed' },
   ];
+  
+  const breadcrumbItems = [
+    { label: 'Beneficiaries', href: '/dashboard/beneficiaries' },
+    { label: beneficiary.name },
+  ];
 
   return (
     <div className="p-4 md:p-8 lg:p-10 space-y-8">
-      <Link href="/dashboard/beneficiaries" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground">
-        <Button variant="outline" size="sm">
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Beneficiaries
-        </Button>
-      </Link>
+      <div className="flex justify-between items-center">
+        <Breadcrumbs items={breadcrumbItems} />
+        <Link href="/dashboard/beneficiaries" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground">
+            <Button variant="outline" size="sm">
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back to Beneficiaries
+            </Button>
+        </Link>
+      </div>
       <Card className="shadow-[0_4px_12px_rgba(0,0,0,0.04),_0_1px_4px_rgba(0,0,0,0.06)] border-0">
         <CardHeader className="flex flex-col md:flex-row items-start md:items-center gap-4">
           <Image

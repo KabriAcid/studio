@@ -11,6 +11,7 @@ import { ArrowLeft, DollarSign, CalendarDays, History, Mail, Phone, FileText, Gi
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Breadcrumbs } from '@/components/ui/breadcrumbs';
 
 export default function ContributorDetailsPage({ params }: { params: { id: string } }) {
   const contributor = contributors.find((b) => b.id === params.id);
@@ -26,14 +27,22 @@ export default function ContributorDetailsPage({ params }: { params: { id: strin
     { id: 3, date: '2022-10-15', amount: 1500, type: 'Grant' },
   ];
 
+  const breadcrumbItems = [
+    { label: 'Contributors', href: '/dashboard/contributors' },
+    { label: contributor.name },
+  ];
+
   return (
     <div className="p-4 md:p-8 lg:p-10 space-y-8">
-      <Link href="/dashboard/contributors" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground">
-        <Button variant="outline" size="sm">
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            Back to Contributors
-        </Button>
-      </Link>
+       <div className="flex justify-between items-center">
+        <Breadcrumbs items={breadcrumbItems} />
+        <Link href="/dashboard/contributors" className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground">
+            <Button variant="outline" size="sm">
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back to Contributors
+            </Button>
+        </Link>
+      </div>
       <Card className="shadow-[0_4px_12px_rgba(0,0,0,0.04),_0_1px_4px_rgba(0,0,0,0.06)] border-0">
         <CardHeader className="flex flex-col md:flex-row items-start md:items-center gap-4">
           <Image
