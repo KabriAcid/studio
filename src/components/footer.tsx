@@ -26,7 +26,7 @@ export function Footer() {
           <div>
             <h4 className="font-semibold text-lg mb-4">Get Involved</h4>
             <ul className="space-y-2">
-              <li><Link href="/dashboard/contributors" className="text-muted-foreground hover:text-primary">Donate</Link></li>
+              <li><Link href="/donate" className="text-muted-foreground hover:text-primary">Donate</Link></li>
               <li><Link href="/volunteer" className="text-muted-foreground hover:text-primary">Volunteer</Link></li>
               <li><Link href="/partners" className="text-muted-foreground hover:text-primary">Partner with Us</Link></li>
             </ul>

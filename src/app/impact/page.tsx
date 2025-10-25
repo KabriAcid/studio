@@ -96,7 +96,7 @@ export default function ImpactPage() {
                                 <div className="mt-4 font-semibold">
                                     <p className="text-lg">{t.name}</p>
                                     <p className="text-sm text-primary">{t.program}</p>
-                                </div>
+                                 </div>
                             </CardContent>
                         </Card>
                     ))}
@@ -113,7 +113,7 @@ export default function ImpactPage() {
             </p>
             <div className="mt-8">
               <Button asChild size="lg">
-                <Link href="/dashboard/contributors">
+                <Link href="/donate">
                   Donate Now <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>

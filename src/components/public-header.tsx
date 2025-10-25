@@ -46,7 +46,7 @@ export function PublicHeader() {
             <Link href="/login">Log In</Link>
           </Button>
           <Button asChild>
-            <Link href="/dashboard/contributors">Donate Now</Link>
+            <Link href="/donate">Donate Now</Link>
           </Button>
         </div>
         <div className="md:hidden">
@@ -76,7 +76,7 @@ export function PublicHeader() {
                     <Link href="/login">Log In</Link>
                 </Button>
                 <Button asChild>
-                    <Link href="/dashboard/contributors">Donate Now</Link>
+                    <Link href="/donate">Donate Now</Link>
                 </Button>
             </div>
           </nav>

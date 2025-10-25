@@ -82,7 +82,7 @@ export default function LandingPage() {
             </p>
             <div className="mt-8 flex justify-center gap-4">
               <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                <Link href="/dashboard/contributors">Donate Now</Link>
+                <Link href="/donate">Donate Now</Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="text-white border-white hover:bg-white hover:text-primary">
                 <Link href="/impact">Our Impact</Link>
