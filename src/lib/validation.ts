@@ -55,3 +55,11 @@ export const logContributionSchema = z.object({
     }),
     type: z.enum(['Donation', 'Grant', 'Sponsorship', 'Membership']),
 });
+
+export const contactSchema = z.object({
+  name: z.string().min(2, { message: 'Name is required.' }),
+  email: z.string().email({ message: 'Please enter a valid email address.' }),
+  phoneNumber: z.string().optional(),
+  subject: z.string().min(2, { message: 'Subject is required.' }),
+  message: z.string().min(10, { message: 'Message must be at least 10 characters.' }),
+});

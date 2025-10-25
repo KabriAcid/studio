@@ -6,8 +6,36 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { Phone, Mail, MapPin } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { contactSchema } from "@/lib/validation";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { useToast } from "@/hooks/use-toast";
 
 export default function ContactPage() {
+    const { toast } = useToast();
+
+    const form = useForm<z.infer<typeof contactSchema>>({
+        resolver: zodResolver(contactSchema),
+        defaultValues: {
+            name: "",
+            email: "",
+            phoneNumber: "",
+            subject: "",
+            message: "",
+        },
+    });
+
+    function onSubmit(values: z.infer<typeof contactSchema>) {
+        console.log(values);
+        toast({
+            title: "Message Sent!",
+            description: "Thank you for reaching out. We'll get back to you shortly.",
+        });
+        form.reset();
+    }
+
   return (
     <div className="bg-background">
       <div className="container mx-auto px-4 py-16">
@@ -21,27 +49,78 @@ export default function ContactPage() {
         <div className="grid md:grid-cols-2 gap-12 items-start">
             <Card className="shadow-lg">
                 <CardContent className="p-8">
-                    <form className="space-y-6">
-                        <div className="grid sm:grid-cols-2 gap-6">
-                            <div className="space-y-2">
-                                <label htmlFor="name" className="text-sm font-medium">Name</label>
-                                <Input id="name" placeholder="Your Name" />
+                    <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                            <FormField
+                                control={form.control}
+                                name="name"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Name</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="Your Name" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                             <div className="grid sm:grid-cols-2 gap-6">
+                                <FormField
+                                    control={form.control}
+                                    name="email"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Email</FormLabel>
+                                            <FormControl>
+                                                <Input placeholder="you@example.com" {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="phoneNumber"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Phone Number</FormLabel>
+                                            <FormControl>
+                                                <Input placeholder="Your Phone Number" {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
                             </div>
-                            <div className="space-y-2">
-                                <label htmlFor="email" className="text-sm font-medium">Email</label>
-                                <Input id="email" type="email" placeholder="you@example.com" />
-                            </div>
-                        </div>
-                        <div className="space-y-2">
-                             <label htmlFor="subject" className="text-sm font-medium">Subject</label>
-                             <Input id="subject" placeholder="What is this about?" />
-                        </div>
-                        <div className="space-y-2">
-                            <label htmlFor="message" className="text-sm font-medium">Message</label>
-                            <Textarea id="message" placeholder="Your message..." rows={5} />
-                        </div>
-                        <Button type="submit" className="w-full" size="lg">Send Message</Button>
-                    </form>
+                            <FormField
+                                control={form.control}
+                                name="subject"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Subject</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="What is this about?" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="message"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Message</FormLabel>
+                                        <FormControl>
+                                            <Textarea placeholder="Your message..." rows={5} {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <Button type="submit" className="w-full" size="lg">Send Message</Button>
+                        </form>
+                    </Form>
                 </CardContent>
             </Card>
 
