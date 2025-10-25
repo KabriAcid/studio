@@ -125,7 +125,7 @@ export default function LoginPage() {
                                     Forgot password?
                                 </button>
                             </DialogTrigger>
-                            <DialogContent className="sm:max-w-[425px]">
+                            <DialogContent>
                                 <form onSubmit={handlePasswordReset}>
                                     <DialogHeader>
                                         <DialogTitle>Reset Password</DialogTitle>
@@ -133,9 +133,9 @@ export default function LoginPage() {
                                         Enter your email address below and we'll send you a link to reset your password.
                                         </DialogDescription>
                                     </DialogHeader>
-                                    <div className="grid gap-4 py-6">
-                                        <div className="grid grid-cols-4 items-center gap-4">
-                                            <Label htmlFor="reset-email" className="text-right">
+                                    <div className="space-y-4 py-6">
+                                        <div className="space-y-2">
+                                            <Label htmlFor="reset-email">
                                                 Email
                                             </Label>
                                             <Input
@@ -143,7 +143,6 @@ export default function LoginPage() {
                                                 type="email"
                                                 value={resetEmail}
                                                 onChange={(e) => setResetEmail(e.target.value)}
-                                                className="col-span-3"
                                                 placeholder="you@example.com"
                                                 required
                                             />
