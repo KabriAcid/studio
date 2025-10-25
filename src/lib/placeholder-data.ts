@@ -146,7 +146,9 @@ export const userProfile: UserProfile = {
 export const teamMembers = [
     { id: 1, name: 'Dr. Amina Yusuf', role: 'Founder & Executive Director', avatar: getAvatar('avatar-8'), bio: 'Dr. Yusuf founded EduAid HQ with a passion for ensuring every child has access to quality education. Her vision drives our mission.' },
     { id: 2, name: 'Tunde Adekunle', role: 'Head of Operations', avatar: getAvatar('avatar-7'), bio: 'Tunde manages the day-to-day operations, ensuring our programs run smoothly and efficiently to maximize our impact.' },
-    { id: 3, name: 'Ngozi Obi', role: 'Partnerships Lead', avatar: getAvatar('avatar-10'), bio: 'Ngozi builds and maintains relationships with our generous corporate and individual partners who make our work possible.' },
+    { id: 3, name: 'Chinedu Okoro', role: 'Lead, Finance & Partnerships', avatar: getAvatar('avatar-9'), bio: 'Chinedu oversees the financial health of the organization and builds relationships with our generous corporate and individual partners.'},
+    { id: 4, name: 'Ngozi Obi', role: 'Program Coordinator', avatar: getAvatar('avatar-10'), bio: 'Ngozi coordinates our beneficiary programs, ensuring that support reaches the students who need it most.' },
+    { id: 5, name: 'Emeka Nwosu', role: 'Community Engagement Officer', avatar: getAvatar('avatar-11'), bio: 'Emeka works on the ground, connecting with communities and identifying students who can benefit from our programs.' },
 ];
 
 export const heroSlides: HeroSlide[] = [
