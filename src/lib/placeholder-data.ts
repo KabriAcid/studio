@@ -102,11 +102,11 @@ export const monthlyFinancials: MonthlyData[] = [
 
 export const beneficiaries: Beneficiary[] = [
   { id: '1', firstName: 'Aisha', lastName: 'Mohammed', email: 'aisha.m@example.com', avatar: getAvatar('avatar-1'), phoneNumber: '08012345671', category: 'Student', status: 'Active', totalPayments: 1250000, paymentDate: '2023-05-20', lga: 'Yola North', state: 'Adamawa', class: 'SSS 3', paymentType: 'Termly Fees' },
-  { id: '2', firstName: 'Ibrahim', lastName: 'Umar', email: 'ibrahim.u@example.com', avatar: getAvatar('avatar-2'), phoneNumber: '08012345672', category: 'Student', status: 'Active', totalPayments: 900000, paymentDate: '2023-05-18', lga: 'Jalingo', state: 'Taraba', class: 'JSS 1', paymentType: 'Registration' },
+  { id: '2', firstName: 'Ibrahim', lastName: 'Umar', email: 'ibrahim.u@example.com', avatar: getAvatar('avatar-2'), phoneNumber: '08012345672', category: 'Student', status: 'Active', totalPayments: 900000, paymentDate: '2023-05-18', lga: 'Jalingo', state: 'Taraba', class: 'JSS 1', paymentType: 'Registration Fees' },
   { id: '3', firstName: 'Fatima', lastName: 'Bello', email: 'fatima.b@example.com', avatar: getAvatar('avatar-3'), category: 'Researcher', status: 'Inactive', totalPayments: 2500000, paymentDate: '2022-12-10', lga: 'Mubi North', state: 'Adamawa', class: 'N/A', paymentType: 'Book Grant' },
   { id: '4', firstName: 'Zainab', lastName: 'Abubakar', email: 'zainab.a@example.com', avatar: getAvatar('avatar-4'), category: 'Student', status: 'Graduated', totalPayments: 6000000, paymentDate: '2021-06-01', lga: 'Wukari', state: 'Taraba', class: 'Graduated', paymentType: 'Termly Fees' },
   { id: '5', firstName: 'Ahmed', lastName: 'Suleiman', email: 'ahmed.s@example.com', avatar: getAvatar('avatar-5'), category: 'Educator', status: 'Active', totalPayments: 1600000, paymentDate: '2023-04-30', lga: 'Yola South', state: 'Adamawa', class: 'N/A', paymentType: 'Transport' },
-  { id: '6', firstName: 'Halima', lastName: 'Garba', email: 'halima.g@example.com', avatar: getAvatar('avatar-6'), phoneNumber: '08012345676', category: 'Student', status: 'Active', totalPayments: 375000, paymentDate: '2023-05-22', lga: 'Sardauna', state: 'Taraba', class: 'Primary 5', paymentType: 'Registration' },
+  { id: '6', firstName: 'Halima', lastName: 'Garba', email: 'halima.g@example.com', avatar: getAvatar('avatar-6'), phoneNumber: '08012345676', category: 'Student', status: 'Active', totalPayments: 750000, paymentDate: '2023-05-22', lga: 'Sardauna', state: 'Taraba', class: 'Primary 5', paymentType: 'Registration Fees' },
 ];
 
 export const contributors: Contributor[] = [

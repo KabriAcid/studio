@@ -141,6 +141,7 @@ export default function BeneficiariesPage() {
                   <TableHead>State</TableHead>
                   <TableHead>LGA</TableHead>
                   <TableHead>Class</TableHead>
+                  <TableHead>Payment Type</TableHead>
                   <TableHead>Status</TableHead>
                   <TableHead className="text-right">Total Payments</TableHead>
                   <TableHead className="text-right">Actions</TableHead>
@@ -168,6 +169,9 @@ export default function BeneficiariesPage() {
                     <TableCell>{beneficiary.state}</TableCell>
                     <TableCell>{beneficiary.lga}</TableCell>
                     <TableCell>{beneficiary.class}</TableCell>
+                    <TableCell>
+                        <Badge variant="secondary">{beneficiary.paymentType}</Badge>
+                    </TableCell>
                     <TableCell>
                       <Badge variant={beneficiary.status === 'Active' ? 'default' : 'secondary'} className={cn(
                           beneficiary.status === 'Active' && 'bg-green-100 text-green-800 border-green-200',

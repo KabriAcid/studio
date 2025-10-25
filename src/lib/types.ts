@@ -13,7 +13,7 @@ export type Beneficiary = {
   lga: string;
   state: string;
   class: string;
-  paymentType: 'Registration' | 'Termly Fees' | 'Book Grant' | 'Transport';
+  paymentType: 'Registration Fees' | 'Termly Fees' | 'Book Grant' | 'Transport' | 'Distress';
 };
 
 export type Contributor = {

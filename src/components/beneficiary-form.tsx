@@ -157,10 +157,11 @@ export function BeneficiaryForm({ beneficiary, onSubmit }: BeneficiaryFormProps)
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="Registration">Registration</SelectItem>
+                      <SelectItem value="Registration Fees">Registration Fees</SelectItem>
                       <SelectItem value="Termly Fees">Termly Fees</SelectItem>
                       <SelectItem value="Book Grant">Book Grant</SelectItem>
                       <SelectItem value="Transport">Transport</SelectItem>
+                      <SelectItem value="Distress">Distress</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />

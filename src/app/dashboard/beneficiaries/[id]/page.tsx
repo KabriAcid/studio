@@ -28,7 +28,7 @@ export default function BeneficiaryDetailsPage({ params }: { params: { id: strin
     { id: 2, date: '2023-04-20', amount: 250000, status: 'Completed', type: 'Termly Fees' },
     { id: 3, date: '2023-03-20', amount: 250000, status: 'Completed', type: 'Termly Fees' },
     { id: 4, date: '2023-02-20', amount: 250000, status: 'Completed', type: 'Termly Fees' },
-    { id: 5, date: '2023-01-20', amount: 100000, status: 'Completed', type: 'Registration' },
+    { id: 5, date: '2023-01-20', amount: 100000, status: 'Completed', type: 'Registration Fees' },
   ];
   
   const breadcrumbItems = [
