@@ -59,12 +59,13 @@ export default function LandingPage() {
                 {heroSlides.map((slide) => (
                     <CarouselItem key={slide.id}>
                          <div className="relative h-[60vh] min-h-[500px] w-full">
+                             <div className="absolute inset-0 bg-black/50 z-10"></div>
                              <Image
                                 src={slide.imageUrl}
                                 fill
                                 style={{objectFit: "cover"}}
                                 alt={slide.alt}
-                                className="absolute inset-0 z-[-1] brightness-75"
+                                className="absolute inset-0"
                                 data-ai-hint={slide.imageHint}
                             />
                          </div>
@@ -73,7 +74,7 @@ export default function LandingPage() {
                 </CarouselContent>
             </Carousel>
          
-          <div className="relative z-10 p-4">
+          <div className="relative z-20 p-4">
             <h1 className="text-5xl md:text-7xl font-bold font-headline tracking-tight">
               Empowering Futures Through Education
             </h1>

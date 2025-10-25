@@ -153,10 +153,10 @@ export const teamMembers = [
 ];
 
 export const heroSlides: HeroSlide[] = [
-    { id: 'slide-1', imageUrl: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop', alt: 'Students studying together', imageHint: 'students learning' },
-    { id: 'slide-2', imageUrl: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2070&auto=format&fit=crop', alt: 'Student graduating', imageHint: 'student graduation' },
-    { id: 'slide-3', imageUrl: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop', alt: 'Students in a classroom', imageHint: 'students classroom' },
-    { id: 'slide-4', imageUrl: 'https://images.unsplash.com/photo-1576405828234-a8a932c942b9?q=80&w=2070&auto=format&fit=crop', alt: 'Happy children smiling', imageHint: 'happy children' },
+    { id: 'slide-1', imageUrl: 'https://images.unsplash.com/photo-1494949649113-4b743d4a4a83?q=80&w=2070&auto=format&fit=crop', alt: 'Student smiling', imageHint: 'smiling student' },
+    { id: 'slide-2', imageUrl: 'https://images.unsplash.com/photo-1627863262029-551225a172c7?q=80&w=2070&auto=format&fit=crop', alt: 'Children in a classroom', imageHint: 'classroom children' },
+    { id: 'slide-3', imageUrl: 'https://images.unsplash.com/photo-1571260899104-606c11d74d29?q=80&w=2070&auto=format&fit=crop', alt: 'Students collaborating', imageHint: 'students collaborating' },
+    { id: 'slide-4', imageUrl: 'https://images.unsplash.com/photo-1610484830842-db636e2572c0?q=80&w=1974&auto=format&fit=crop', alt: 'Child reading a book', imageHint: 'child reading' },
 ];
 
 export const blogPosts: BlogPost[] = [
