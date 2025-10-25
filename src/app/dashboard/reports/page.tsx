@@ -177,7 +177,7 @@ export default function ReportsPage() {
                                     <TableBody>
                                         {beneficiaries.map((beneficiary) => (
                                             <TableRow key={beneficiary.id}>
-                                                <TableCell className="font-medium">{beneficiary.name}</TableCell>
+                                                <TableCell className="font-medium">{beneficiary.firstName} {beneficiary.lastName}</TableCell>
                                                 <TableCell>{beneficiary.category}</TableCell>
                                                 <TableCell>{beneficiary.status}</TableCell>
                                                 <TableCell className="text-right">${beneficiary.totalPayments.toLocaleString()}</TableCell>
@@ -211,7 +211,7 @@ export default function ReportsPage() {
                                     <TableBody>
                                         {contributors.map((contributor) => (
                                             <TableRow key={contributor.id}>
-                                                <TableCell className="font-medium">{contributor.name}</TableCell>
+                                                <TableCell className="font-medium">{contributor.firstName} {contributor.lastName}</TableCell>
                                                 <TableCell>{contributor.category}</TableCell>
                                                 <TableCell>{contributor.status}</TableCell>
                                                 <TableCell className="text-right">${contributor.totalContribution.toLocaleString()}</TableCell>
@@ -227,5 +227,3 @@ export default function ReportsPage() {
         </div>
     );
 }
-
-    

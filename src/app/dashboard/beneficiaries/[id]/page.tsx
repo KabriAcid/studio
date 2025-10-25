@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { beneficiaries } from '@/lib/placeholder-data';
 import { cn } from '@/lib/utils';
-import { ArrowLeft, DollarSign, CalendarDays, History, Mail, Phone, FileText } from 'lucide-react';
+import { ArrowLeft, DollarSign, CalendarDays, History, Mail, Phone, FileText, MapPin, GraduationCap } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -24,11 +24,11 @@ export default function BeneficiaryDetailsPage({ params }: { params: { id: strin
 
   // Placeholder for payment history
   const paymentHistory = [
-    { id: 1, date: '2023-05-20', amount: 500, status: 'Completed' },
-    { id: 2, date: '2023-04-20', amount: 500, status: 'Completed' },
-    { id: 3, date: '2023-03-20', amount: 500, status: 'Completed' },
-    { id: 4, date: '2023-02-20', amount: 500, status: 'Completed' },
-    { id: 5, date: '2023-01-20', amount: 500, status: 'Completed' },
+    { id: 1, date: '2023-05-20', amount: 500, status: 'Completed', type: beneficiary.paymentType },
+    { id: 2, date: '2023-04-20', amount: 500, status: 'Completed', type: 'Termly Fees' },
+    { id: 3, date: '2023-03-20', amount: 500, status: 'Completed', type: 'Termly Fees' },
+    { id: 4, date: '2023-02-20', amount: 500, status: 'Completed', type: 'Termly Fees' },
+    { id: 5, date: '2023-01-20', amount: 500, status: 'Completed', type: 'Registration' },
   ];
   
   const breadcrumbItems = [
@@ -91,30 +91,38 @@ export default function BeneficiaryDetailsPage({ params }: { params: { id: strin
                 </Card>
                  <Card>
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
-                        <CardTitle className="text-lg">Enrollment Details</CardTitle>
-                        <CalendarDays className="h-5 w-5 text-muted-foreground" />
+                        <CardTitle className="text-lg">Academic Details</CardTitle>
+                        <GraduationCap className="h-5 w-5 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
                         <div className="space-y-3">
                             <div className="flex flex-col">
-                                <span className="text-sm text-muted-foreground">Date Joined</span>
-                                <span className="font-semibold">{new Date('2022-01-15').toLocaleDateString()}</span>
-                            </div>
-                            <div className="flex flex-col">
                                 <span className="text-sm text-muted-foreground">Program</span>
                                 <span className="font-semibold">University Scholarship</span>
+                            </div>
+                            <div className="flex flex-col">
+                                <span className="text-sm text-muted-foreground">Current Class</span>
+                                <span className="font-semibold">{beneficiary.class}</span>
+                            </div>
+                             <div className="flex flex-col">
+                                <span className="text-sm text-muted-foreground">Date Joined</span>
+                                <span className="font-semibold">{new Date('2022-01-15').toLocaleDateString()}</span>
                             </div>
                         </div>
                     </CardContent>
                 </Card>
                  <Card>
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
-                        <CardTitle className="text-lg">Contact Info</CardTitle>
-                        <Phone className="h-5 w-5 text-muted-foreground" />
+                        <CardTitle className="text-lg">Location & Contact</CardTitle>
+                        <MapPin className="h-5 w-5 text-muted-foreground" />
                     </CardHeader>
                     <CardContent>
                        <div className="space-y-3">
-                            <div className="flex items-center gap-2">
+                            <div className="flex flex-col">
+                                <span className="text-sm text-muted-foreground">Location</span>
+                                <span className="font-semibold">{beneficiary.lga}, {beneficiary.state}</span>
+                            </div>
+                            <div className="flex items-center gap-2 pt-2">
                                 <Mail className="h-4 w-4 text-muted-foreground" />
                                 <a href={`mailto:${beneficiary.email}`} className="text-primary hover:underline">{beneficiary.email}</a>
                             </div>
@@ -136,6 +144,7 @@ export default function BeneficiaryDetailsPage({ params }: { params: { id: strin
                             <TableHeader>
                                 <TableRow>
                                     <TableHead>Date</TableHead>
+                                    <TableHead>Type</TableHead>
                                     <TableHead className="text-right">Amount</TableHead>
                                     <TableHead>Status</TableHead>
                                 </TableRow>
@@ -144,6 +153,9 @@ export default function BeneficiaryDetailsPage({ params }: { params: { id: strin
                                 {paymentHistory.map(p => (
                                 <TableRow key={p.id}>
                                     <TableCell>{p.date}</TableCell>
+                                     <TableCell>
+                                        <Badge variant="secondary">{p.type}</Badge>
+                                    </TableCell>
                                     <TableCell className="text-right">${p.amount.toLocaleString()}</TableCell>
                                     <TableCell>
                                         <Badge variant="default" className="bg-green-100 text-green-800 border-green-200">{p.status}</Badge>

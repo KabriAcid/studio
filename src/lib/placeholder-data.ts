@@ -101,12 +101,12 @@ export const monthlyFinancials: MonthlyData[] = [
 ];
 
 export const beneficiaries: Beneficiary[] = [
-  { id: '1', firstName: 'Alice', lastName: 'Johnson', email: 'alice.j@example.com', avatar: getAvatar('avatar-1'), category: 'Student', status: 'Active', totalPayments: 2500, paymentDate: '2023-05-20' },
-  { id: '2', firstName: 'Bob', lastName: 'Williams', email: 'bob.w@example.com', avatar: getAvatar('avatar-2'), category: 'Student', status: 'Active', totalPayments: 1800, paymentDate: '2023-05-18' },
-  { id: '3', firstName: 'Charlie', lastName: 'Brown', email: 'charlie.b@example.com', avatar: getAvatar('avatar-3'), category: 'Researcher', status: 'Inactive', totalPayments: 5000, paymentDate: '2022-12-10' },
-  { id: '4', firstName: 'Diana', lastName: 'Miller', email: 'diana.m@example.com', avatar: getAvatar('avatar-4'), category: 'Student', status: 'Graduated', totalPayments: 12000, paymentDate: '2021-06-01' },
-  { id: '5', firstName: 'Ethan', lastName: 'Davis', email: 'ethan.d@example.com', avatar: getAvatar('avatar-5'), category: 'Educator', status: 'Active', totalPayments: 3200, paymentDate: '2023-04-30' },
-  { id: '6', firstName: 'Fiona', lastName: 'Wilson', email: 'fiona.w@example.com', avatar: getAvatar('avatar-6'), category: 'Student', status: 'Active', totalPayments: 750, paymentDate: '2023-05-22' },
+  { id: '1', firstName: 'Alice', lastName: 'Johnson', email: 'alice.j@example.com', avatar: getAvatar('avatar-1'), category: 'Student', status: 'Active', totalPayments: 2500, paymentDate: '2023-05-20', lga: 'Ikeja', state: 'Lagos', class: 'SSS 3', paymentType: 'Termly Fees' },
+  { id: '2', firstName: 'Bob', lastName: 'Williams', email: 'bob.w@example.com', avatar: getAvatar('avatar-2'), category: 'Student', status: 'Active', totalPayments: 1800, paymentDate: '2023-05-18', lga: 'Abeokuta South', state: 'Ogun', class: 'JSS 1', paymentType: 'Registration' },
+  { id: '3', firstName: 'Charlie', lastName: 'Brown', email: 'charlie.b@example.com', avatar: getAvatar('avatar-3'), category: 'Researcher', status: 'Inactive', totalPayments: 5000, paymentDate: '2022-12-10', lga: 'Ibadan North', state: 'Oyo', class: 'N/A', paymentType: 'Book Grant' },
+  { id: '4', firstName: 'Diana', lastName: 'Miller', email: 'diana.m@example.com', avatar: getAvatar('avatar-4'), category: 'Student', status: 'Graduated', totalPayments: 12000, paymentDate: '2021-06-01', lga: 'Enugu East', state: 'Enugu', class: 'Graduated', paymentType: 'Termly Fees' },
+  { id: '5', firstName: 'Ethan', lastName: 'Davis', email: 'ethan.d@example.com', avatar: getAvatar('avatar-5'), category: 'Educator', status: 'Active', totalPayments: 3200, paymentDate: '2023-04-30', lga: 'Kano Municipal', state: 'Kano', class: 'N/A', paymentType: 'Transport' },
+  { id: '6', firstName: 'Fiona', lastName: 'Wilson', email: 'fiona.w@example.com', avatar: getAvatar('avatar-6'), category: 'Student', status: 'Active', totalPayments: 750, paymentDate: '2023-05-22', lga: 'Port Harcourt', state: 'Rivers', class: 'Primary 5', paymentType: 'Registration' },
 ];
 
 export const contributors: Contributor[] = [

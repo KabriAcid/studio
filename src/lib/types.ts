@@ -9,6 +9,10 @@ export type Beneficiary = {
   status: 'Active' | 'Inactive' | 'Graduated';
   totalPayments: number;
   paymentDate: string;
+  lga: string;
+  state: string;
+  class: string;
+  paymentType: 'Registration' | 'Termly Fees' | 'Book Grant' | 'Transport';
 };
 
 export type Contributor = {

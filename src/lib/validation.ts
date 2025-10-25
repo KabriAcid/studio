@@ -24,6 +24,10 @@ export const beneficiarySchema = z.object({
   }),
   category: z.enum(['Student', 'Researcher', 'Educator']),
   status: z.enum(['Active', 'Inactive', 'Graduated']),
+  lga: z.string().min(2, { message: 'LGA is required.' }),
+  state: z.string().min(2, { message: 'State is required.' }),
+  class: z.string().min(1, { message: 'Class is required.' }),
+  paymentType: z.enum(['Registration', 'Termly Fees', 'Book Grant', 'Transport']),
 });
 
 

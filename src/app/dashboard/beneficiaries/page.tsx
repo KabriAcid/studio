@@ -70,7 +70,7 @@ export default function BeneficiariesPage() {
                     New Beneficiary
                 </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
+            <DialogContent className="sm:max-w-md">
                 <DialogHeader>
                     <DialogTitle>{selectedBeneficiary ? 'Edit Beneficiary' : 'New Beneficiary'}</DialogTitle>
                 </DialogHeader>
@@ -115,7 +115,8 @@ export default function BeneficiariesPage() {
             <TableHeader>
               <TableRow>
                 <TableHead>Name</TableHead>
-                <TableHead>Category</TableHead>
+                <TableHead>State</TableHead>
+                <TableHead>Class</TableHead>
                 <TableHead>Status</TableHead>
                 <TableHead className="text-right">Total Payments</TableHead>
                 <TableHead className="text-right">Actions</TableHead>
@@ -140,7 +141,8 @@ export default function BeneficiariesPage() {
                       </div>
                     </div>
                   </TableCell>
-                  <TableCell>{beneficiary.category}</TableCell>
+                  <TableCell>{beneficiary.state}</TableCell>
+                  <TableCell>{beneficiary.class}</TableCell>
                   <TableCell>
                     <Badge variant={beneficiary.status === 'Active' ? 'default' : 'secondary'} className={cn(
                         beneficiary.status === 'Active' && 'bg-green-100 text-green-800 border-green-200',
