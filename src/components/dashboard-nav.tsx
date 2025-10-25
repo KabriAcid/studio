@@ -15,7 +15,7 @@ import {
 const links = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/dashboard/beneficiaries', label: 'Beneficiaries', icon: Users },
-  { href: '/dashboard/contributors', label: 'Contributors', icon: HeartHandshake },
+  { href: '/dashboard/contributors', label: 'Contributions', icon: HeartHandshake },
   { href: '/dashboard/reports', label: 'Reports', icon: BarChart3 },
   { href: '/dashboard/settings', label: 'Settings', icon: Settings },
 ];
@@ -36,14 +36,14 @@ export function DashboardNav() {
         <SidebarMenuItem key={link.href}>
           <Link href={link.href} onClick={handleClick}>
             <SidebarMenuButton
-              isActive={pathname === link.href}
+              isActive={pathname.startsWith(link.href) && (link.href !== '/dashboard' || pathname === '/dashboard')}
               tooltip={link.label}
               aria-label={link.label}
               asChild
             >
               <div>
                 <link.icon />
-                <span>{link.label}</span>
+                <span className="group-data-[collapsible=icon]:hidden">{link.label}</span>
               </div>
             </SidebarMenuButton>
           </Link>
@@ -52,3 +52,5 @@ export function DashboardNav() {
     </SidebarMenu>
   );
 }
+
+    
