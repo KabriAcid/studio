@@ -74,9 +74,9 @@ export default function AboutPage() {
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <motion.div variants={itemVariants}>
-                <h2 className="text-4xl font-bold font-headline mb-4">Our Mission & Vision</h2>
+                <h2 className="text-4xl font-bold font-headline mb-4">Our Story & Mission</h2>
                 <p className="text-muted-foreground text-lg mb-6">
-                  Our mission is to ensure that every determined student in Nigeria has the financial means to pursue their educational goals. We envision a nation where potential is not limited by financial barriers, and every young person can achieve their dreams.
+                 Established in 2005 and based in Adamawa and Taraba states, our primary focus is to support orphans, people in distress, and widows. We believe in providing targeted aid to uplift the most vulnerable in our communities.
                 </p>
                 <div className="space-y-4">
                     <div className="flex items-start gap-4">
@@ -84,17 +84,17 @@ export default function AboutPage() {
                             <Target className="h-6 w-6" />
                         </div>
                         <div>
-                            <h4 className="font-semibold text-xl">Our Mission</h4>
-                            <p className="text-muted-foreground">To bridge the gap between potential and opportunity by providing transparent and effective financial support to students in need.</p>
+                            <h4 className="font-semibold text-xl">Our Focus</h4>
+                            <p className="text-muted-foreground">To provide holistic support to orphans, widows, and those in distress, ensuring they have the resources for a better future.</p>
                         </div>
                     </div>
                      <div className="flex items-start gap-4">
                         <div className="bg-primary/10 text-primary rounded-full p-3 mt-1">
-                            <Handshake className="h-6 w-6" />
+                            <BookOpen className="h-6 w-6" />
                         </div>
                         <div>
-                            <h4 className="font-semibold text-xl">Our Vision</h4>
-                            <p className="text-muted-foreground">A Nigeria where every student has the chance to succeed, regardless of their financial background.</p>
+                            <h4 className="font-semibold text-xl">Our Reach</h4>
+                            <p className="text-muted-foreground">We are actively sponsoring children in schools like Al-Iman School Jalingo, and Darul-Ulum, and supporting students at Taraba State University and Modibbo Adama University. Our work also extends to FMC Hospital and local widows.</p>
                         </div>
                     </div>
                 </div>

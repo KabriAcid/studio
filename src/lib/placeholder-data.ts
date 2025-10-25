@@ -1,6 +1,6 @@
 
 
-import type { Beneficiary, Contributor, Contribution, FinancialStat, MonthlyData, Category, UserProfile, HeroSlide } from '@/lib/types';
+import type { Beneficiary, Contributor, Contribution, FinancialStat, MonthlyData, Category, UserProfile, HeroSlide, BlogPost } from '@/lib/types';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const getAvatar = (id: string) => PlaceHolderImages.find(img => img.id === id)?.imageUrl || '';
@@ -144,11 +144,12 @@ export const userProfile: UserProfile = {
 };
 
 export const teamMembers = [
-    { id: 1, name: 'Dr. Amina Yusuf', role: 'Founder & Executive Director', avatar: getAvatar('avatar-8'), bio: 'Dr. Yusuf founded EduAid HQ with a passion for ensuring every child has access to quality education. Her vision drives our mission.' },
-    { id: 2, name: 'Tunde Adekunle', role: 'Head of Operations', avatar: getAvatar('avatar-7'), bio: 'Tunde manages the day-to-day operations, ensuring our programs run smoothly and efficiently to maximize our impact.' },
-    { id: 3, name: 'Chinedu Okoro', role: 'Lead, Finance & Partnerships', avatar: getAvatar('avatar-9'), bio: 'Chinedu oversees the financial health of the organization and builds relationships with our generous corporate and individual partners.'},
-    { id: 4, name: 'Ngozi Obi', role: 'Program Coordinator', avatar: getAvatar('avatar-10'), bio: 'Ngozi coordinates our beneficiary programs, ensuring that support reaches the students who need it most.' },
-    { id: 5, name: 'Emeka Nwosu', role: 'Community Engagement Officer', avatar: getAvatar('avatar-11'), bio: 'Emeka works on the ground, connecting with communities and identifying students who can benefit from our programs.' },
+    { id: 1, name: 'Mustapha Buhari', role: 'Chairman', avatar: getAvatar('avatar-7'), bio: 'Leading our organization with a vision for a brighter future for the underserved.' },
+    { id: 2, name: 'Alh. Jika Hassan Ardo', role: 'Board of Trustee', avatar: getAvatar('avatar-8'), bio: 'A key member of our board, providing strategic guidance and support for our mission.' },
+    { id: 3, name: 'Alhaji Isa', role: 'Board of Trustee', avatar: getAvatar('avatar-9'), bio: 'Dedicated to overseeing our programs and ensuring we reach those most in need.'},
+    { id: 4, name: 'Alh. Umar Leme', role: 'Member', avatar: getAvatar('avatar-10'), bio: 'An active member contributing to community outreach and engagement efforts.' },
+    { id: 5, name: 'Alh. Dauda', role: 'Member', avatar: getAvatar('avatar-11'), bio: 'Passionate about our cause, working to expand our impact and reach.' },
+    { id: 6, name: 'Alh. Yazid', role: 'Member', avatar: getAvatar('avatar-12'), bio: 'A valued member whose contributions are vital to our operational success.' },
 ];
 
 export const heroSlides: HeroSlide[] = [
@@ -156,4 +157,34 @@ export const heroSlides: HeroSlide[] = [
     { id: 'slide-2', imageUrl: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2070&auto=format&fit=crop', alt: 'Student graduating', imageHint: 'student graduation' },
     { id: 'slide-3', imageUrl: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop', alt: 'Students in a classroom', imageHint: 'students classroom' },
     { id: 'slide-4', imageUrl: 'https://images.unsplash.com/photo-1576405828234-a8a932c942b9?q=80&w=2070&auto=format&fit=crop', alt: 'Happy children smiling', imageHint: 'happy children' },
+];
+
+export const blogPosts: BlogPost[] = [
+  {
+    slug: 'first-post',
+    title: 'How We Started: The EduAid HQ Story',
+    excerpt: 'Discover the inspiration and journey behind our mission to empower students across Nigeria.',
+    author: 'Amina Yusuf',
+    date: 'October 26, 2023',
+    imageUrl: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop',
+    imageHint: 'students classroom'
+  },
+  {
+    slug: 'second-post',
+    title: 'Impact Stories: Meet Aisha Mohammed',
+    excerpt: 'Aisha, one of our first beneficiaries, shares her story of academic success and how EduAid HQ made a difference.',
+    author: 'Tunde Adekunle',
+    date: 'October 20, 2023',
+    imageUrl: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2070&auto=format&fit=crop',
+    imageHint: 'student graduation'
+  },
+  {
+    slug: 'third-post',
+    title: 'The Importance of Corporate Sponsorship in Education',
+    excerpt: 'Learn how corporate partnerships are crucial in creating sustainable educational opportunities for the next generation.',
+    author: 'Chinedu Okoro',
+    date: 'October 15, 2023',
+    imageUrl: 'https://images.unsplash.com/photo-1571260899104-606c11d74d29?q=80&w=2070&auto=format&fit=crop',
+    imageHint: 'business handshake'
+  },
 ];

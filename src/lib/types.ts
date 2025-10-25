@@ -76,3 +76,13 @@ export type HeroSlide = {
     imageUrl: string;
     imageHint: string;
 };
+
+export type BlogPost = {
+  slug: string;
+  title: string;
+  excerpt: string;
+  author: string;
+  date: string;
+  imageUrl: string;
+  imageHint: string;
+};

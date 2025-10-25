@@ -5,37 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { ArrowRight } from "lucide-react";
 import Image from 'next/image';
 import Link from 'next/link';
+import { blogPosts } from "@/lib/placeholder-data";
 
-// Placeholder blog data
-const blogPosts = [
-  {
-    slug: 'first-post',
-    title: 'How We Started: The EduAid HQ Story',
-    excerpt: 'Discover the inspiration and journey behind our mission to empower students across Nigeria.',
-    author: 'Amina Yusuf',
-    date: 'October 26, 2023',
-    imageUrl: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop',
-    imageHint: 'students classroom'
-  },
-  {
-    slug: 'second-post',
-    title: 'Impact Stories: Meet Aisha Mohammed',
-    excerpt: 'Aisha, one of our first beneficiaries, shares her story of academic success and how EduAid HQ made a difference.',
-    author: 'Tunde Adekunle',
-    date: 'October 20, 2023',
-    imageUrl: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2070&auto=format&fit=crop',
-    imageHint: 'student graduation'
-  },
-  {
-    slug: 'third-post',
-    title: 'The Importance of Corporate Sponsorship in Education',
-    excerpt: 'Learn how corporate partnerships are crucial in creating sustainable educational opportunities for the next generation.',
-    author: 'Chinedu Okoro',
-    date: 'October 15, 2023',
-    imageUrl: 'https://images.unsplash.com/photo-1571260899104-606c11d74d29?q=80&w=2070&auto=format&fit=crop',
-    imageHint: 'business handshake'
-  },
-];
 
 export default function BlogPage() {
   return (
