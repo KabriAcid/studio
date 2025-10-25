@@ -63,3 +63,21 @@ export const contactSchema = z.object({
   subject: z.string().min(2, { message: 'Subject is required.' }),
   message: z.string().min(10, { message: 'Message must be at least 10 characters.' }),
 });
+
+export const profileSchema = z.object({
+  name: z.string().min(2, {
+    message: 'Name must be at least 2 characters.',
+  }),
+  email: z.string().email({
+    message: 'Please enter a valid email address.',
+  }),
+});
+
+export const changePasswordSchema = z.object({
+    currentPassword: z.string().min(6, { message: 'Please enter your current password.' }),
+    newPassword: z.string().min(8, { message: 'New password must be at least 8 characters.' }),
+    confirmPassword: z.string()
+}).refine(data => data.newPassword === data.confirmPassword, {
+    message: "New passwords don't match.",
+    path: ["confirmPassword"],
+});

@@ -31,8 +31,11 @@ import {
 import Link from "next/link";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import Image from "next/image";
+import { useToast } from "@/hooks/use-toast";
+import { ChangePasswordForm } from "@/components/change-password-form";
 
 export default function SettingsPage() {
+  const { toast } = useToast();
   const [beneficiaryCategories, setBeneficiaryCategories] = useState<Category[]>(initialBeneficiaryCategories);
   const [contributorCategories, setContributorCategories] = useState<Category[]>(initialContributorCategories);
   const [contributors, setContributors] = useState<Contributor[]>(initialContributors);
@@ -74,6 +77,7 @@ export default function SettingsPage() {
         }
       }
     }
+    toast({ title: "Success", description: "Category saved successfully." });
     setIsCategoryModalOpen(false);
     setSelectedCategory(undefined);
   };
@@ -86,6 +90,7 @@ export default function SettingsPage() {
             setContributorCategories(contributorCategories.filter(c => c.id !== categoryToDelete.id));
         }
         setCategoryToDelete(null);
+        toast({ title: "Success", description: "Category deleted successfully." });
     }
   };
 
@@ -112,6 +117,7 @@ export default function SettingsPage() {
       };
       setContributors([...contributors, newContributor]);
     }
+    toast({ title: "Success", description: "Contributor saved successfully." });
     setIsContributorModalOpen(false);
     setSelectedContributor(undefined);
   };
@@ -120,14 +126,25 @@ export default function SettingsPage() {
     if (contributorToDelete) {
         setContributors(contributors.filter(c => c.id !== contributorToDelete));
         setContributorToDelete(null);
+        toast({ title: "Success", description: "Contributor deleted successfully." });
     }
+  };
+
+  const handleProfileSubmit = (values: any) => {
+    setProfile(values);
+    toast({ title: "Success", description: "Your profile has been updated." });
+  };
+  
+  const handleChangePasswordSubmit = (values: any) => {
+    console.log("Password change values:", values);
+    toast({ title: "Success", description: "Your password has been changed successfully." });
   };
 
 
   return (
     <div className="p-4 md:p-8 lg:p-10 space-y-8">
       <Dialog open={isCategoryModalOpen} onOpenChange={setIsCategoryModalOpen}>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle>{selectedCategory?.category.id ? 'Edit' : 'New'} {selectedCategory?.type === 'beneficiary' ? 'Beneficiary' : 'Contributor'} Category</DialogTitle>
           </DialogHeader>
@@ -145,15 +162,38 @@ export default function SettingsPage() {
       
       <div className="space-y-2">
         <h1 className="text-4xl font-bold font-headline tracking-tight">Settings</h1>
-        <p className="text-lg text-muted-foreground">Manage your application settings and categories.</p>
+        <p className="text-lg text-muted-foreground">Manage your application settings, profile, and categories.</p>
       </div>
 
-      <Tabs defaultValue="categories" className="w-full">
-        <TabsList className="grid w-full max-w-md grid-cols-2">
+      <Tabs defaultValue="profile" className="w-full">
+        <TabsList className="grid w-full max-w-lg grid-cols-3">
+          <TabsTrigger value="profile">My Profile</TabsTrigger>
           <TabsTrigger value="categories">Categories</TabsTrigger>
           <TabsTrigger value="contributors">Contributors</TabsTrigger>
         </TabsList>
-        <TabsContent value="categories">
+        <TabsContent value="profile" className="mt-6">
+            <div className="grid gap-8 md:grid-cols-2">
+                 <Card className="shadow-[0_4px_12px_rgba(0,0,0,0.04),_0_1px_4px_rgba(0,0,0,0.06)] border-0">
+                    <CardHeader>
+                        <CardTitle className="text-2xl font-headline">Profile Information</CardTitle>
+                        <CardDescription>Update your personal details here.</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <ProfileForm profile={profile} onSubmit={handleProfileSubmit} />
+                    </CardContent>
+                </Card>
+                <Card className="shadow-[0_4px_12px_rgba(0,0,0,0.04),_0_1px_4px_rgba(0,0,0,0.06)] border-0">
+                    <CardHeader>
+                        <CardTitle className="text-2xl font-headline">Change Password</CardTitle>
+                        <CardDescription>Choose a new, strong password.</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <ChangePasswordForm onSubmit={handleChangePasswordSubmit} />
+                    </CardContent>
+                </Card>
+            </div>
+        </TabsContent>
+        <TabsContent value="categories" className="mt-6">
           <AlertDialog onOpenChange={(open) => !open && setCategoryToDelete(null)}>
             <div className="grid gap-6 md:grid-cols-2">
               <Card className="shadow-[0_4px_12px_rgba(0,0,0,0.04),_0_1px_4px_rgba(0,0,0,0.06)] border-0">
@@ -241,7 +281,7 @@ export default function SettingsPage() {
             </AlertDialogContent>
           </AlertDialog>
         </TabsContent>
-        <TabsContent value="contributors">
+        <TabsContent value="contributors" className="mt-6">
            <AlertDialog onOpenChange={(open) => !open && setContributorToDelete(null)}>
               <Card className="shadow-[0_4px_12px_rgba(0,0,0,0.04),_0_1px_4px_rgba(0,0,0,0.06)] border-0">
                 <CardHeader className="flex flex-row items-center justify-between">
