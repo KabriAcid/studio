@@ -44,3 +44,12 @@ export const contributorSchema = z.object({
   category: z.enum(['Individual', 'Corporate', 'Foundation']),
   status: z.enum(['Active', 'Inactive', 'Paused']),
 });
+
+export const logContributionSchema = z.object({
+    contributorId: z.string().min(1, { message: 'Please select a contributor.' }),
+    amount: z.coerce.number().positive({ message: 'Amount must be a positive number.' }),
+    date: z.date({
+        required_error: 'A contribution date is required.',
+    }),
+    type: z.enum(['Donation', 'Grant', 'Sponsorship', 'Membership']),
+});

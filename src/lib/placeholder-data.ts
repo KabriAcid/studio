@@ -1,5 +1,5 @@
 
-import type { Beneficiary, Contributor, FinancialStat, MonthlyData, Category, UserProfile } from '@/lib/types';
+import type { Beneficiary, Contributor, Contribution, FinancialStat, MonthlyData, Category, UserProfile } from '@/lib/types';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const getAvatar = (id: string) => PlaceHolderImages.find(img => img.id === id)?.imageUrl || '';
@@ -58,29 +58,29 @@ export const beneficiaryStats: FinancialStat[] = [
   },
 ];
 
-export const contributorStats: FinancialStat[] = [
+export const contributionStats: FinancialStat[] = [
     {
-      title: 'Total Contributors',
-      value: '48',
-      change: '+5 this month',
+      title: 'Contributions This Month',
+      value: '$8,542',
+      change: '+15.2% vs last month',
       changeType: 'increase',
     },
     {
       title: 'Active Contributors',
-      value: '35',
-      change: '-1 from last month',
-      changeType: 'decrease',
+      value: '23',
+      change: '+2 this month',
+      changeType: 'increase',
     },
     {
-      title: 'Total Contributions',
+      title: 'Total Contribution Value',
       value: '$45,231.89',
       change: '+20.1% from last month',
       changeType: 'increase',
     },
     {
-      title: 'Avg. Contribution',
-      value: '$942.33',
-      change: '+8.1% from last month',
+      title: 'Total Contributions',
+      value: '112',
+      change: '+12 this month',
       changeType: 'increase',
     },
   ];
@@ -115,6 +115,14 @@ export const contributors: Contributor[] = [
     { id: '3', firstName: 'Ivan', lastName: 'Martinez', email: 'ivan.m@example.com', avatar: getAvatar('avatar-9'), category: 'Foundation', status: 'Paused', totalContribution: 100000, lastContributionDate: '2022-11-20' },
     { id: '4', firstName: 'Judy', lastName: 'Rodriguez', email: 'judy.r@example.com', avatar: getAvatar('avatar-10'), category: 'Individual', status: 'Inactive', totalContribution: 1000, lastContributionDate: '2021-02-05' },
     { id: '5', firstName: 'Kyle', lastName: 'Chen', email: 'kyle.c@example.com', avatar: getAvatar('avatar-11'), category: 'Individual', status: 'Active', totalContribution: 250, lastContributionDate: '2023-05-19' },
+];
+
+export const recentContributions: Contribution[] = [
+  { id: 'c1', contributorId: '1', amount: 500, date: '2023-05-25', type: 'Donation' },
+  { id: 'c2', contributorId: '2', amount: 2500, date: '2023-05-24', type: 'Sponsorship' },
+  { id: 'c3', contributorId: '3', amount: 10000, date: '2023-05-22', type: 'Grant' },
+  { id: 'c4', contributorId: '1', amount: 500, date: '2023-04-25', type: 'Donation' },
+  { id: 'c5', contributorId: '5', amount: 100, date: '2023-04-20', type: 'Membership' },
 ];
 
 export const beneficiaryCategories: Category[] = [

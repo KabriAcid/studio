@@ -27,6 +27,14 @@ export type Contributor = {
   lastContributionDate: string;
 };
 
+export type Contribution = {
+  id: string;
+  contributorId: string;
+  amount: number;
+  date: string;
+  type: 'Donation' | 'Grant' | 'Sponsorship' | 'Membership';
+}
+
 export type FinancialStat = {
   title: string;
   value: string;

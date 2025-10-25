@@ -2,7 +2,7 @@
 'use client';
 
 import Image from 'next/image';
-import { PlusCircle, Pencil, Eye, HeartHandshake, Users, DollarSign, UserPlus } from 'lucide-react';
+import { PlusCircle, HeartHandshake, Users, DollarSign, ListChecks } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
@@ -14,20 +14,18 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { contributors, contributorStats } from '@/lib/placeholder-data';
-import { cn } from '@/lib/utils';
+import { contributionStats, recentContributions, contributors } from '@/lib/placeholder-data';
 import { useState, useEffect } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { ContributorForm } from '@/components/contributor-form';
-import type { Contributor } from '@/lib/types';
+import { LogContributionForm } from '@/components/log-contribution-form';
 import { TableSkeleton } from '@/components/table-skeleton';
 import { KpiCard } from '@/components/kpi-card';
 import { Skeleton } from '@/components/ui/skeleton';
-import Link from 'next/link';
+import type { Contribution } from '@/lib/types';
 
-export default function ContributorsPage() {
+
+export default function ContributionsPage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedContributor, setSelectedContributor] = useState<Contributor | undefined>(undefined);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -37,44 +35,40 @@ export default function ContributorsPage() {
         return () => clearTimeout(timer);
     }, []);
 
-    const handleNewContributor = () => {
-        setSelectedContributor(undefined);
-        setIsModalOpen(true);
-    };
-
-    const handleEditContributor = (contributor: Contributor) => {
-        setSelectedContributor(contributor);
+    const handleLogContribution = () => {
         setIsModalOpen(true);
     };
 
     const handleFormSubmit = (values: any) => {
-        console.log('Form values:', values);
+        console.log('Contribution logged:', values);
         // Here you would typically handle form submission,
-        // e.g., by calling an API to create/update a contributor.
+        // e.g., by calling an API to create a contribution.
         setIsModalOpen(false);
     };
 
-    const icons = [<HeartHandshake />, <Users />, <DollarSign />, <UserPlus />];
+    const icons = [<HeartHandshake />, <Users />, <DollarSign />, <ListChecks />];
+    
+    const getContributorById = (id: string) => contributors.find(c => c.id === id);
 
     return (
         <div className="p-4 md:p-8 lg:p-10 space-y-8">
             <div className="flex items-center justify-between">
                 <div className="space-y-2">
-                    <h1 className="text-4xl font-bold font-headline tracking-tight">Contributors</h1>
-                    <p className="text-lg text-muted-foreground">Manage your organization's contributors.</p>
+                    <h1 className="text-4xl font-bold font-headline tracking-tight">Contributions</h1>
+                    <p className="text-lg text-muted-foreground">Log and view recent contributions from your donors.</p>
                 </div>
                 <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
                     <DialogTrigger asChild>
-                        <Button size="lg" onClick={handleNewContributor}>
+                        <Button size="lg" onClick={handleLogContribution}>
                             <PlusCircle className="mr-2 h-5 w-5" />
-                            New Contributor
+                            Log Contribution
                         </Button>
                     </DialogTrigger>
                     <DialogContent className="sm:max-w-[425px]">
                         <DialogHeader>
-                            <DialogTitle>{selectedContributor ? 'Edit Contributor' : 'New Contributor'}</DialogTitle>
+                            <DialogTitle>Log a New Contribution</DialogTitle>
                         </DialogHeader>
-                        <ContributorForm contributor={selectedContributor} onSubmit={handleFormSubmit} />
+                        <LogContributionForm contributors={contributors} onSubmit={handleFormSubmit} />
                     </DialogContent>
                 </Dialog>
             </div>
@@ -96,7 +90,7 @@ export default function ContributorsPage() {
             </div>
             ) : (
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-                {contributorStats.map((stat, index) => (
+                {contributionStats.map((stat, index) => (
                     <KpiCard key={stat.title} {...stat} icon={icons[index]} />
                 ))}
             </div>
@@ -104,8 +98,8 @@ export default function ContributorsPage() {
 
             <Card className="shadow-[0_4px_12px_rgba(0,0,0,0.04),_0_1px_4px_rgba(0,0,0,0.06)] border-0">
                 <CardHeader>
-                    <CardTitle className="text-2xl font-headline">Contributor List</CardTitle>
-                    <CardDescription className="text-base">A list of all contributors in your records.</CardDescription>
+                    <CardTitle className="text-2xl font-headline">Recent Contributions</CardTitle>
+                    <CardDescription className="text-base">A log of all recent contributions received.</CardDescription>
                 </CardHeader>
                 <CardContent>
                     {isLoading ? (
@@ -114,59 +108,45 @@ export default function ContributorsPage() {
                     <Table>
                         <TableHeader>
                             <TableRow>
-                                <TableHead>Name</TableHead>
-                                <TableHead>Category</TableHead>
-                                <TableHead>Status</TableHead>
-                                <TableHead className="text-right">Total Contribution</TableHead>
-                                <TableHead className="text-right">Actions</TableHead>
+                                <TableHead>Contributor</TableHead>
+                                <TableHead>Date</TableHead>
+                                <TableHead>Type</TableHead>
+                                <TableHead className="text-right">Amount</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {contributors.map((contributor) => (
-                                <TableRow key={contributor.id}>
+                            {recentContributions.map((contribution) => {
+                                const contributor = getContributorById(contribution.contributorId);
+                                return (
+                                <TableRow key={contribution.id}>
                                     <TableCell className="font-medium">
-                                        <div className="flex items-center gap-3">
-                                            <Image
-                                                src={contributor.avatar}
-                                                width={40}
-                                                height={40}
-                                                alt={`${contributor.firstName} ${contributor.lastName}`}
-                                                className="rounded-full"
-                                                data-ai-hint="person face"
-                                            />
-                                            <div>
-                                                <div className="font-bold">{contributor.firstName} {contributor.lastName}</div>
-                                                <div className="text-sm text-muted-foreground">{contributor.email}</div>
+                                        {contributor ? (
+                                             <div className="flex items-center gap-3">
+                                                <Image
+                                                    src={contributor.avatar}
+                                                    width={40}
+                                                    height={40}
+                                                    alt={`${contributor.firstName} ${contributor.lastName}`}
+                                                    className="rounded-full"
+                                                    data-ai-hint="person face"
+                                                />
+                                                <div>
+                                                    <div className="font-bold">{contributor.firstName} {contributor.lastName}</div>
+                                                    <div className="text-sm text-muted-foreground">{contributor.email}</div>
+                                                </div>
                                             </div>
-                                        </div>
+                                        ) : (
+                                            'Unknown Contributor'
+                                        )}
                                     </TableCell>
-                                    <TableCell>{contributor.category}</TableCell>
-                                    <TableCell>
-                                    <Badge variant={contributor.status === 'Active' ? 'default' : 'secondary'} className={cn(
-                                        contributor.status === 'Active' && 'bg-green-100 text-green-800 border-green-200',
-                                        contributor.status === 'Inactive' && 'bg-gray-100 text-gray-800 border-gray-200',
-                                        contributor.status === 'Paused' && 'bg-yellow-100 text-yellow-800 border-yellow-200'
-                                    )}>
-                                        {contributor.status}
-                                    </Badge>
+                                    <TableCell>{new Date(contribution.date).toLocaleDateString()}</TableCell>
+                                     <TableCell>
+                                        <Badge variant="secondary">{contribution.type}</Badge>
                                     </TableCell>
-                                    <TableCell className="text-right">${contributor.totalContribution.toLocaleString()}</TableCell>
-                                    <TableCell>
-                                        <div className="flex items-center justify-end gap-2">
-                                            <Button variant="ghost" size="icon" onClick={() => handleEditContributor(contributor)}>
-                                                <Pencil className="h-4 w-4" />
-                                                <span className="sr-only">Edit</span>
-                                            </Button>
-                                             <Link href={`/dashboard/contributors/${contributor.id}`}>
-                                                <Button variant="ghost" size="icon">
-                                                    <Eye className="h-4 w-4" />
-                                                    <span className="sr-only">View Details</span>
-                                                </Button>
-                                            </Link>
-                                        </div>
-                                    </TableCell>
+                                    <TableCell className="text-right">${contribution.amount.toLocaleString()}</TableCell>
                                 </TableRow>
-                            ))}
+                                )
+                            })}
                         </TableBody>
                     </Table>
                     )}
