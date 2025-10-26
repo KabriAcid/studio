@@ -63,7 +63,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
         <SidebarHeader>
           <div className="flex items-center gap-2 p-2 font-headline text-2xl font-bold text-sidebar-primary">
             <Sparkles className="h-8 w-8" />
-            <span className="group-data-[collapsible=icon]:hidden">EduAid HQ</span>
+            <span className="group-data-[collapsible=icon]:hidden">ESI</span>
           </div>
         </SidebarHeader>
         <SidebarContent>

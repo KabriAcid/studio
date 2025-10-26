@@ -25,7 +25,7 @@ export function PublicHeader() {
       <div className="container mx-auto flex h-20 items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2 font-headline text-2xl font-bold text-primary">
           <Sparkles className="h-8 w-8" />
-          <span>EduAid HQ</span>
+          <span>ESI</span>
         </Link>
         <nav className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (

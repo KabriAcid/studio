@@ -140,7 +140,7 @@ export const contributorCategories: Category[] = [
 
 export const userProfile: UserProfile = {
     name: 'Admin User',
-    email: 'admin@eduaid.org',
+    email: 'admin@esiorg.com',
 };
 
 export const teamMembers = [
@@ -162,39 +162,39 @@ export const heroSlides: HeroSlide[] = [
 export const blogPosts: BlogPost[] = [
   {
     slug: 'how-we-started',
-    title: 'How We Started: The EduAid HQ Story',
+    title: 'How We Started: The ESI Story',
     excerpt: 'Discover the inspiration and journey behind our mission to empower students across Nigeria.',
     author: 'Amina Yusuf',
     date: 'October 26, 2023',
     imageUrl: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop',
     imageHint: 'students classroom',
     content: `
-<p>In the heart of Nigeria, where the thirst for knowledge is as vast as the savanna, EduAid HQ was born. It began not in a boardroom, but from a simple, powerful observation: countless brilliant minds were being held back by a single barrier—financial constraints. This is the story of how a small group of passionate individuals decided to rewrite the narrative for a generation of students.</p>
+<p>In the heart of Nigeria, where the thirst for knowledge is as vast as the savanna, ESI was born. It began not in a boardroom, but from a simple, powerful observation: countless brilliant minds were being held back by a single barrier—financial constraints. This is the story of how a small group of passionate individuals decided to rewrite the narrative for a generation of students.</p>
 <p>Our journey started in 2005 with a focus on Adamawa and Taraba states. We saw firsthand the struggles of orphans, families in distress, and widows who had no one to turn to. The potential was there, but the opportunity was not. We knew we had to act.</p>
 <h3 class="text-2xl font-bold my-4">The First Step</h3>
 <p>Our first initiative was small. We sponsored a handful of children at Al-Iman School in Jalingo and Darul-Ulum, providing them with uniforms, books, and the tuition they needed to stay in school. The joy and relief on their faces were all the motivation we needed. We saw that even a small intervention could create a massive ripple effect, not just for the student, but for their entire family and community.</p>
 <p>Word began to spread, and so did our mission. With the support of early contributors, we were able to expand our reach to higher institutions, including Taraba State University and Modibbo Adama University. We also began providing critical support to patients at FMC Hospital and assisting widows in our local neighborhoods, ensuring that our impact was felt across different facets of the community.</p>
 <h3 class="text-2xl font-bold my-4">Looking Forward</h3>
-<p>Today, EduAid HQ is a testament to what can be achieved when a community comes together. We have sponsored hundreds of students, many of whom have gone on to become leaders, innovators, and changemakers in their own right. But our work is far from over. With your continued support, we can reach even more students, unlock more potential, and build a brighter, more equitable future for Nigeria, one student at a time.</p>
+<p>Today, ESI is a testament to what can be achieved when a community comes together. We have sponsored hundreds of students, many of whom have gone on to become leaders, innovators, and changemakers in their own right. But our work is far from over. With your continued support, we can reach even more students, unlock more potential, and build a brighter, more equitable future for Nigeria, one student at a time.</p>
 `
   },
   {
     slug: 'impact-stories-aisha-mohammed',
     title: 'Impact Stories: Meet Aisha Mohammed',
-    excerpt: 'Aisha, one of our first beneficiaries, shares her story of academic success and how EduAid HQ made a difference.',
+    excerpt: 'Aisha, one of our first beneficiaries, shares her story of academic success and how ESI made a difference.',
     author: 'Tunde Adekunle',
     date: 'October 20, 2023',
     imageUrl: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2070&auto=format&fit=crop',
     imageHint: 'student graduation',
     content: `
 <p>Aisha Mohammed always dreamed of becoming a doctor. Growing up in a small village in Taraba, she was a top student with a passion for science. However, when she lost her father, that dream felt impossibly distant. With her mother struggling to support the family, university seemed like a luxury they could not afford.</p>
-<p>"I had given up hope," Aisha recalls. "I was preparing to find a small job to help my mother. I thought my education was over." That's when she heard about EduAid HQ. After a rigorous application process, she was selected as one of our first university scholars.</p>
+<p>"I had given up hope," Aisha recalls. "I was preparing to find a small job to help my mother. I thought my education was over." That's when she heard about ESI. After a rigorous application process, she was selected as one of our first university scholars.</p>
 <h3 class="text-2xl font-bold my-4">A New Beginning</h3>
-<p>EduAid HQ provided Aisha with a full scholarship that covered her tuition, accommodation, and study materials at Modibbo Adama University. For the first time in years, she could focus entirely on her studies without the burden of financial stress.</p>
+<p>ESI provided Aisha with a full scholarship that covered her tuition, accommodation, and study materials at Modibbo Adama University. For the first time in years, she could focus entirely on her studies without the burden of financial stress.</p>
 <p>"It was like a weight had been lifted off my shoulders," she says. "I could finally dedicate myself to my books. I studied day and night, not just for myself, but for my family and for the people who believed in me."</p>
 <p>Aisha excelled in her studies, graduating at the top of her class with a degree in Medicine. Today, Dr. Aisha Mohammed works at a general hospital in her home state, providing vital medical care to her community. She is a role model, an inspiration, and a living testament to the power of education.</p>
 <h3 class="text-2xl font-bold my-4">Giving Back</h3>
-<p>"EduAid HQ didn't just give me a scholarship; they gave me a future," Aisha says with a smile. "Now, I contribute a portion of my salary back to the organization, so that another young dreamer can have the same chance I did."</p>
+<p>"ESI didn't just give me a scholarship; they gave me a future," Aisha says with a smile. "Now, I contribute a portion of my salary back to the organization, so that another young dreamer can have the same chance I did."</p>
 <p>Aisha's story is one of many. It showcases the profound and lasting impact that a single act of generosity can have. It's a reminder that when we invest in education, we invest in the future of our communities and our nation.</p>
 `
   },
@@ -207,7 +207,7 @@ export const blogPosts: BlogPost[] = [
     imageUrl: 'https://images.unsplash.com/photo-1543269664-56d93c1b41a6?q=80&w=2070&auto=format&fit=crop',
     imageHint: 'business handshake',
     content: `
-<p>While individual donations are the lifeblood of many non-profits, corporate sponsorships provide the scale and stability needed to create long-term, systemic change. At EduAid HQ, our corporate partners are more than just donors; they are strategic allies in our mission to build a more educated and prosperous Nigeria.</p>
+<p>While individual donations are the lifeblood of many non-profits, corporate sponsorships provide the scale and stability needed to create long-term, systemic change. At ESI, our corporate partners are more than just donors; they are strategic allies in our mission to build a more educated and prosperous Nigeria.</p>
 <h3 class="text-2xl font-bold my-4">Why Corporate Partnerships Matter</h3>
 <p>Corporate social responsibility (CSR) has evolved beyond simple philanthropy. Today's leading companies understand that investing in communities, particularly in education, is an investment in their own future. A well-educated populace leads to a skilled workforce, a stronger economy, and a more stable society.</p>
 <p>Here are a few key reasons why corporate sponsorship is so vital:</p>
@@ -218,7 +218,7 @@ export const blogPosts: BlogPost[] = [
     <li class="my-2"><strong>Brand Amplification:</strong> Partnerships amplify our message, raising awareness about the importance of educational equity and encouraging more individuals and organizations to get involved.</li>
 </ul>
 <h3 class="text-2xl font-bold my-4">A Call to Action for Businesses</h3>
-<p>We believe that every business has a role to play in shaping the future. By partnering with EduAid HQ, companies can make a tangible and lasting impact on the lives of young Nigerians. Your support can help us break the cycle of poverty, foster innovation, and build the next generation of leaders.</p>
+<p>We believe that every business has a role to play in shaping the future. By partnering with ESI, companies can make a tangible and lasting impact on the lives of young Nigerians. Your support can help us break the cycle of poverty, foster innovation, and build the next generation of leaders.</p>
 <p>If your organization is looking for a meaningful way to give back, we invite you to connect with us. Together, we can empower futures and transform a nation.</p>
 `
   },

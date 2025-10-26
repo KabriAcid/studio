@@ -10,7 +10,7 @@ export function Footer() {
           <div className="md:col-span-1">
              <Link href="/" className="flex items-center gap-2 font-headline text-2xl font-bold text-primary mb-4">
                 <Sparkles className="h-8 w-8" />
-                <span>EduAid HQ</span>
+                <span>ESI</span>
             </Link>
             <p className="text-muted-foreground">Empowering the next generation of leaders through education.</p>
           </div>
@@ -41,7 +41,7 @@ export function Footer() {
           </div>
         </div>
         <div className="border-t mt-8 pt-6 text-center text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} EduAid HQ. All Rights Reserved.</p>
+          <p>&copy; {new Date().getFullYear()} ESI. All Rights Reserved.</p>
         </div>
       </div>
     </footer>

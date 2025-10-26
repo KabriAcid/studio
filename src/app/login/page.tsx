@@ -83,7 +83,7 @@ export default function LoginPage() {
         <CardHeader className="text-center">
           <div className="flex justify-center items-center gap-2 mb-4">
             <Sparkles className="h-10 w-10 text-primary" />
-            <span className="text-3xl font-bold font-headline text-primary">EduAid HQ</span>
+            <span className="text-3xl font-bold font-headline text-primary">ESI</span>
           </div>
           <CardTitle className="text-2xl font-headline">Welcome Back</CardTitle>
           <CardDescription>Enter your credentials to access your account.</CardDescription>
@@ -133,20 +133,19 @@ export default function LoginPage() {
                                         Enter your email address below and we'll send you a link to reset your password.
                                         </DialogDescription>
                                     </DialogHeader>
-                                    <div className="space-y-4 py-6">
-                                        <div className="space-y-2">
-                                            <Label htmlFor="reset-email">
-                                                Email
-                                            </Label>
-                                            <Input
-                                                id="reset-email"
-                                                type="email"
-                                                value={resetEmail}
-                                                onChange={(e) => setResetEmail(e.target.value)}
-                                                placeholder="you@example.com"
-                                                required
-                                            />
-                                        </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="reset-email" className='w-full'>
+                                            Email
+                                        </Label>
+                                        <Input
+                                            id="reset-email"
+                                            type="email"
+                                            value={resetEmail}
+                                            onChange={(e) => setResetEmail(e.target.value)}
+                                            placeholder="you@example.com"
+                                            required
+                                            className="w-full"
+                                        />
                                     </div>
                                     <DialogFooter>
                                         <DialogClose asChild>

@@ -15,7 +15,7 @@ export default function BlogPage() {
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold font-headline">Our Blog</h1>
           <p className="text-muted-foreground mt-2 text-lg">
-            Stories, updates, and insights from the EduAid HQ team.
+            Stories, updates, and insights from the ESI team.
           </p>
         </div>
 

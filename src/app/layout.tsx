@@ -5,7 +5,7 @@ import { AuthProvider } from '@/hooks/use-auth';
 import { AppLayout } from './app-layout';
 
 export const metadata: Metadata = {
-  title: 'EduAid HQ',
+  title: 'ESI',
   description: 'Manage beneficiaries, contributors, and finances with ease.',
 };
 

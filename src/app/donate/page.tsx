@@ -13,7 +13,7 @@ export default function DonatePage() {
 
     const accountDetails = {
         bankName: "Jaiz Bank Plc",
-        accountName: "EduAid HQ",
+        accountName: "ESI",
         accountNumber: "0012345678",
     };
 
@@ -131,7 +131,7 @@ export default function DonatePage() {
                                     </div>
                                 </div>
                                 <p className="text-xs text-muted-foreground text-center">
-                                    After making a transfer, you can optionally send us a notification at contact@eduaidhq.org for a receipt.
+                                    After making a transfer, you can optionally send us a notification at contact@esiorg.com for a receipt.
                                 </p>
                             </CardContent>
                         </Card>

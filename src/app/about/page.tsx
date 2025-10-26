@@ -56,7 +56,7 @@ export default function AboutPage() {
                 transition={{ duration: 0.5, delay: 0.3 }}
             >
                 <h1 className="text-5xl md:text-6xl font-bold font-headline tracking-tight">
-                    About EduAid HQ
+                    About ESI
                 </h1>
                 <p className="mt-4 text-lg md:text-xl max-w-3xl mx-auto">
                     Learn about our journey, our mission, and the passionate team driving change.
