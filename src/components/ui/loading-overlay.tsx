@@ -1,7 +1,7 @@
 
 'use client';
 
-import { Sparkles } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface LoadingOverlayProps {
@@ -25,7 +25,7 @@ export function LoadingOverlay({ isLoading }: LoadingOverlayProps) {
       role="dialog"
     >
       <div className="relative">
-        <Sparkles className="h-16 w-16 animate-spin text-primary" style={{ animationDuration: '1.5s' }} />
+        <Loader2 className="h-16 w-16 animate-spin text-primary" />
       </div>
     </div>
   );
