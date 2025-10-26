@@ -3,10 +3,11 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Sparkles, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from './ui/button';
 import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -24,7 +25,7 @@ export function PublicHeader() {
     <header className="sticky top-0 z-50 bg-background/80 backdrop-blur-sm border-b">
       <div className="container mx-auto flex h-20 items-center justify-between px-4">
         <Link href="/" className="flex items-center gap-2 font-headline text-2xl font-bold text-primary">
-          <Sparkles className="h-8 w-8" />
+          <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Esp_logo_2019.png/1200px-Esp_logo_2019.png" alt="ESI Logo" width={32} height={32} className="h-8 w-8" />
           <span>ESI</span>
         </Link>
         <nav className="hidden md:flex items-center gap-6">

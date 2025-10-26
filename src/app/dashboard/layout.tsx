@@ -14,12 +14,12 @@ import {
 import { Button } from '@/components/ui/button';
 import { DashboardNav } from '@/components/dashboard-nav';
 import { Header } from '@/components/header';
-import { Sparkles } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { BottomNav } from '@/components/bottom-nav';
+import Image from 'next/image';
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   const { isAuthenticated, loading } = useAuth();
@@ -62,7 +62,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
       <Sidebar>
         <SidebarHeader>
           <div className="flex items-center gap-2 p-2 font-headline text-2xl font-bold text-sidebar-primary">
-            <Sparkles className="h-8 w-8" />
+            <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Esp_logo_2019.png/1200px-Esp_logo_2019.png" alt="ESI Logo" width={32} height={32} className="h-8 w-8" />
             <span className="group-data-[collapsible=icon]:hidden">ESI</span>
           </div>
         </SidebarHeader>

@@ -8,7 +8,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Sparkles } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { LoadingOverlay } from '@/components/ui/loading-overlay';
 import {
@@ -33,6 +32,7 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
+import Image from 'next/image';
 
 export default function LoginPage() {
   const [resetEmail, setResetEmail] = useState('');
@@ -82,7 +82,7 @@ export default function LoginPage() {
       <Card className="w-full max-w-sm shadow-2xl">
         <CardHeader className="text-center">
           <div className="flex justify-center items-center gap-2 mb-4">
-            <Sparkles className="h-10 w-10 text-primary" />
+            <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Esp_logo_2019.png/1200px-Esp_logo_2019.png" alt="ESI Logo" width={40} height={40} className="h-10 w-10" />
             <span className="text-3xl font-bold font-headline text-primary">ESI</span>
           </div>
           <CardTitle className="text-2xl font-headline">Welcome Back</CardTitle>
@@ -134,7 +134,7 @@ export default function LoginPage() {
                                         </DialogDescription>
                                     </DialogHeader>
                                     <div className="space-y-2">
-                                        <Label htmlFor="reset-email" className='w-full'>
+                                        <Label htmlFor="reset-email" className="w-full">
                                             Email
                                         </Label>
                                         <Input

@@ -1,6 +1,7 @@
 
-import { Sparkles, Twitter, Facebook, Linkedin } from 'lucide-react';
+import { Twitter, Facebook, Linkedin } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export function Footer() {
   return (
@@ -9,7 +10,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-1">
              <Link href="/" className="flex items-center gap-2 font-headline text-2xl font-bold text-primary mb-4">
-                <Sparkles className="h-8 w-8" />
+                <Image src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Esp_logo_2019.png/1200px-Esp_logo_2019.png" alt="ESI Logo" width={32} height={32} className="h-8 w-8" />
                 <span>ESI</span>
             </Link>
             <p className="text-muted-foreground">Empowering the next generation of leaders through education.</p>
