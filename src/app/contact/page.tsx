@@ -149,7 +149,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                         <h3 className="text-xl font-semibold">Call Us</h3>
-                        <p className="text-muted-foreground">+234 801 234 5678</p>
+                        <a href="tel:+2348012345678" className="text-muted-foreground hover:text-primary">+234 801 234 5678</a>
                     </div>
                 </div>
             </div>

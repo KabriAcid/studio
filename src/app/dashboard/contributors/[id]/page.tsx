@@ -118,7 +118,11 @@ export default function ContributorDetailsPage({ params }: { params: { id: strin
                             </div>
                              <div className="flex items-center gap-2">
                                 <Phone className="h-4 w-4 text-muted-foreground" />
-                                <span className="text-muted-foreground">{contributor.phoneNumber || 'No phone number'}</span>
+                                {contributor.phoneNumber ? (
+                                    <a href={`tel:${contributor.phoneNumber}`} className="text-primary hover:underline">{contributor.phoneNumber}</a>
+                                ) : (
+                                    <span className="text-muted-foreground">No phone number</span>
+                                )}
                             </div>
                         </div>
                     </CardContent>
