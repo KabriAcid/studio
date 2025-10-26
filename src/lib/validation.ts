@@ -72,6 +72,7 @@ export const profileSchema = z.object({
   email: z.string().email({
     message: 'Please enter a valid email address.',
   }),
+  avatar: z.string().optional(),
 });
 
 export const changePasswordSchema = z.object({

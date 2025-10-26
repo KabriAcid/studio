@@ -11,7 +11,8 @@ import {
   CarouselItem,
 } from '@/components/ui/carousel';
 import Autoplay from "embla-carousel-autoplay";
-import { heroSlides, teamMembers } from '@/lib/placeholder-data';
+import { heroSlides } from '@/lib/placeholder-images';
+import { teamMembers } from '@/lib/placeholder-data';
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';

@@ -4,6 +4,8 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
+import Image from 'next/image';
+import { useRef } from 'react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -16,17 +18,10 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import type { UserProfile } from '@/lib/types';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { profileSchema } from '@/lib/validation';
 
-const formSchema = z.object({
-  name: z.string().min(2, {
-    message: 'Name must be at least 2 characters.',
-  }),
-  email: z.string().email({
-    message: 'Please enter a valid email address.',
-  }),
-});
-
-type ProfileFormValues = z.infer<typeof formSchema>;
+type ProfileFormValues = z.infer<typeof profileSchema>;
 
 interface ProfileFormProps {
   profile: UserProfile;
@@ -34,17 +29,54 @@ interface ProfileFormProps {
 }
 
 export function ProfileForm({ profile, onSubmit }: ProfileFormProps) {
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const form = useForm<ProfileFormValues>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(profileSchema),
     defaultValues: {
       name: profile?.name || '',
       email: profile?.email || '',
+      avatar: profile?.avatar || '',
     },
   });
+
+  const handleAvatarClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        form.setValue('avatar', reader.result as string);
+        // Here you would typically upload the file and update the user's profile
+        console.log("New avatar selected:", reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const currentAvatar = form.watch('avatar');
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <div className="flex flex-col items-center space-y-4">
+            <Avatar className="h-32 w-32">
+                <AvatarImage src={currentAvatar} alt={profile.name} data-ai-hint="person face" />
+                <AvatarFallback>{profile.name?.charAt(0)}</AvatarFallback>
+            </Avatar>
+            <input 
+                type="file" 
+                ref={fileInputRef} 
+                onChange={handleFileChange}
+                className="hidden"
+                accept="image/*"
+            />
+            <Button type="button" variant="outline" onClick={handleAvatarClick}>
+                Change Picture
+            </Button>
+        </div>
         <FormField
           control={form.control}
           name="name"

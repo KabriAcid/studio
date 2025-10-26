@@ -60,6 +60,7 @@ export type Category = {
 export type UserProfile = {
     name: string;
     email: string;
+    avatar?: string;
 };
 
 export type TeamMember = {

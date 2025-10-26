@@ -1,6 +1,6 @@
 
 
-import type { Beneficiary, Contributor, Contribution, FinancialStat, MonthlyData, Category, UserProfile, HeroSlide, BlogPost } from '@/lib/types';
+import type { Beneficiary, Contributor, Contribution, FinancialStat, MonthlyData, Category, UserProfile, BlogPost } from '@/lib/types';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const getAvatar = (id: string) => PlaceHolderImages.find(img => img.id === id)?.imageUrl || '';
@@ -141,6 +141,7 @@ export const contributorCategories: Category[] = [
 export const userProfile: UserProfile = {
     name: 'Admin User',
     email: 'admin@esiorg.com',
+    avatar: getAvatar('avatar-12'),
 };
 
 export const teamMembers = [
@@ -150,13 +151,6 @@ export const teamMembers = [
     { id: 4, name: 'Alh. Umar Leme', role: 'Member', avatar: getAvatar('avatar-10'), bio: 'An active member contributing to community outreach and engagement efforts.' },
     { id: 5, name: 'Alh. Dauda', role: 'Member', avatar: getAvatar('avatar-11'), bio: 'Passionate about our cause, working to expand our impact and reach.' },
     { id: 6, name: 'Alh. Yazid', role: 'Member', avatar: getAvatar('avatar-12'), bio: 'A valued member whose contributions are vital to our operational success.' },
-];
-
-export const heroSlides: HeroSlide[] = [
-    { id: 'slide-1', imageUrl: 'https://images.unsplash.com/photo-1494949649113-4b743d4a4a83?q=80&w=2070&auto=format&fit=crop', alt: 'Student smiling', imageHint: 'smiling student' },
-    { id: 'slide-2', imageUrl: 'https://images.unsplash.com/photo-1627863262029-551225a172c7?q=80&w=2070&auto=format&fit=crop', alt: 'Children in a classroom', imageHint: 'classroom children' },
-    { id: 'slide-3', imageUrl: 'https://images.unsplash.com/photo-1571260899104-606c11d74d29?q=80&w=2070&auto=format&fit=crop', alt: 'Students collaborating', imageHint: 'students collaborating' },
-    { id: 'slide-4', imageUrl: 'https://images.unsplash.com/photo-1610484830842-db636e2572c0?q=80&w=1974&auto=format&fit=crop', alt: 'Child reading a book', imageHint: 'child reading' },
 ];
 
 export const blogPosts: BlogPost[] = [
